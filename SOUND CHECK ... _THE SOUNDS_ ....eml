@@ -1,0 +1,2578 @@
+Delivered-To: adam@carpent.us
+Received: by 2002:a6b:ec03:0:0:0:0:0 with SMTP id c3csp1156508ioh;
+        Fri, 3 Apr 2020 19:19:48 -0700 (PDT)
+X-Received: by 2002:aca:5b04:: with SMTP id p4mr5721799oib.105.1585966787797;
+        Fri, 03 Apr 2020 19:19:47 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1585966787; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=CyugLZ4CLzpL8U+0mJmMp8uN89hfOF76aBgSUx3A1XSDs9PTV/Fr+A2AP40fVZkoiL
+         kiuaBJUfhoG597sawdF1iUja/oJ56I0BhUQ1+QF33h2juXjBDffcRUh1wVtSBNuoA21D
+         McqVASrrOglO+0ZX/svvRjBTggPYYAf4bw+A2WbVQX0ZFodr8BTLm99utIiLQKWO8TlG
+         KZrU9BEGhniEYNvoHxzAzjoAtA3eOjv6NfWXTLS+TRGKHhYxDbR15+11VCCKzQj8CeE8
+         VQVbI7MqOufSqEAwDfmOX8f0w0ZbE8GE7RHvG/GBDiNOSV1cJEMXwD7o32y6ndPRr5eR
+         Ncsg==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-archive:list-post:list-id:mailing-list:mime-version:list-owner
+         :list-subscribe:list-unsubscribe:list-help:bounces-to:precedence
+         :message-id:from:date:subject:to:dkim-signature;
+        bh=gb968JBPFKpeEDbueQAdhF9tYjRt7qI0ZSwLpHOuFWw=;
+        b=xnYRQLeU4lbdMmzE673QwLVNrDBaC6VrRIs1lFIxTFGWwNG1P1OnUl7/jsd7u8YCGI
+         aozTNJNl3oRxgaUxlhKaO/R8BbfzZhuz3MAictndztH/fIs5nSEr0Q98J4rxars1XswK
+         m9nhdg/HNRAlGkQ7ztMd1ngA8i+ivUACZjtDOI4QJGiDsvK6PVIJDpETTdhXpHhWCL0T
+         407o0HvT1I2uAEzgE4GJm0gXEhWxJn3z8iiqojDfE10zermfEytr6j/9yw98TrkEy4XG
+         LQIXCLDUBa3MqiA7xfSvAqCkzVJS67vcrctIOFgKahpEOgvwAt2ARI5nv3Qp/mUg3OOJ
+         kTfw==
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@fromthemachine-org.20150623.gappssmtp.com header.s=20150623 header.b=Six3tLuF;
+       arc=pass (i=2);
+       spf=neutral (google.com: 209.85.220.69 is neither permitted nor denied by best guess record for domain of am+bncbaabbqo5t72akgqejtuqk2y@fromthemachine.org) smtp.mailfrom=am+bncBAABBQO5T72AKGQEJTUQK2Y@fromthemachine.org
+Return-Path: <am+bncBAABBQO5T72AKGQEJTUQK2Y@fromthemachine.org>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id o7sor7805138oti.184.2020.04.03.19.19.47
+        for <adam@carpent.us>
+        (Google Transport Security);
+        Fri, 03 Apr 2020 19:19:47 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.69 is neither permitted nor denied by best guess record for domain of am+bncbaabbqo5t72akgqejtuqk2y@fromthemachine.org) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@fromthemachine-org.20150623.gappssmtp.com header.s=20150623 header.b=Six3tLuF;
+       arc=pass (i=2);
+       spf=neutral (google.com: 209.85.220.69 is neither permitted nor denied by best guess record for domain of am+bncbaabbqo5t72akgqejtuqk2y@fromthemachine.org) smtp.mailfrom=am+bncBAABBQO5T72AKGQEJTUQK2Y@fromthemachine.org
+ARC-Seal: i=2; a=rsa-sha256; t=1585966787; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=NGHW25M2cC0uYnOms6yJN4jz+V8DXW10v37Bo/Qv5I4JIUzobZAwugx/R3R4DyCaDA
+         rMHFpVC2Qm9xdym9XSZhynXGG2R7vf4y8V6k9J9X+6KT2SmW6C08mRWp2gf6PSu91Pr0
+         INbg8QkPEKbsR38ztTbuzYV1Dk1jK3mWRr84bB1+anqUJoN4K94TTVrdy1W3udDtLJ41
+         2+bPhXJ4o2frERZDy3kxvGxPSXuRD4U/4UveEYpw2nfRx+T1SbxFZpOJExazmNG/Yp3I
+         ceyYG2qDiQJqD/r/41E/nX4mIQIYYE05MB8JAVqDsgCUdzTUL1lECUbTw/9Lby44F1D2
+         HA4g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-archive:list-post:list-id:mailing-list:mime-version:list-owner
+         :list-subscribe:list-unsubscribe:list-help:bounces-to:precedence
+         :message-id:from:date:subject:to:dkim-signature;
+        bh=gb968JBPFKpeEDbueQAdhF9tYjRt7qI0ZSwLpHOuFWw=;
+        b=fU6cLvsHTkGCYvtUcg8xGsinncw473Adx1x+48LQ01VtQ77nz6wKoKoQBskFQffCEk
+         Z4NQ8y+nox68o67OzhWFLY6Ci2fFvaiPTNPdoEXjue0pq3ehTesDNcuMDo/0dadXL7WK
+         IKZNZT/JPitxGI9l+S2YfPxFmTZJ0PadFJDbXBief6BbJEbhAYE3SZxDPXHGl3OyDQ1W
+         5ZWGrbE2dYzLngu48OebTCT+pCgcpwNrEhGtp9T6cugQaenAoJUweDaSRpJL/21cR19v
+         wspRXwDGcE4ORRW8kl+vNVHAghQcNpfHbBcmQkUn6s/jhp2txQy0WsaNZMEtN0Upx2Yr
+         kdYQ==
+ARC-Authentication-Results: i=2; mx.google.com;
+       spf=neutral (google.com: 3.17.204.179 is neither permitted nor denied by best guess record for domain of loxta@arvagf3mcfjgyvse.onion.pet) smtp.mailfrom=LOXTA@arvagf3mcfjgyvse.onion.pet
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fromthemachine-org.20150623.gappssmtp.com; s=20150623;
+        h=to:subject:date:from:message-id:precedence:bounces-to:list-help
+         :list-unsubscribe:list-subscribe:list-owner:mime-version
+         :x-original-sender:x-original-authentication-results:mailing-list
+         :list-id:list-post:list-archive;
+        bh=gb968JBPFKpeEDbueQAdhF9tYjRt7qI0ZSwLpHOuFWw=;
+        b=Six3tLuFiJuLgZRhZ60hSUM3XbCSURAQ9bpi89B0BbMPNCB8j1sBDVIyrG+cTdT/Zl
+         byZ7u16dmQkLB8BX/unC4gjzq19lxqsazmWreMMV8HRcmBZkg5VZkORgJJ1yOmvKasak
+         /diMH9OxhojJhyyvP2otSp1gzg2fYGJOa+5pNPy1LtbeQk2KIHZDHEtMVqi0EBLbex4u
+         HXE8ojAr0nO45y9dU6TGNVvxgqfc1lfkZTi+zD/nToL5WoxhhpTvFqc+tLSlqhlmUV4h
+         vqSoReXmbP89jqKGixU/cy+mb6ybunaWKNKrxsJuwqHQajNKDvOOecgrbcTlhXjp1n5C
+         1HSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:subject:date:from:message-id:precedence
+         :bounces-to:list-help:list-unsubscribe:list-subscribe:list-owner
+         :mime-version:x-original-sender:x-original-authentication-results
+         :mailing-list:list-id:list-post:list-archive;
+        bh=gb968JBPFKpeEDbueQAdhF9tYjRt7qI0ZSwLpHOuFWw=;
+        b=ov/SnQHB0H2WnblvcF74Op4bX3VmZd7IHUGynDbF7ZP3r918K2Un2IG5AnBNt4q2El
+         EXU6wIwtqOslUHMiYdUx7jGoz0PNL23gjyFp2Lwwpvx3EoY5rcaPx9ydjmsRf6bvYvrq
+         bc97Rx0mi9BD18OZ1XR9XqhrQ7kpcU1Xr7ombSHiOqpIUXqYK1PDasywIG2toHFlqcBW
+         2HuZpmbuSYL5aSekY1A+xL+i3KmSxIpBmnO7RhR3m7d8ZcCBc+OwTKqfhWQX8SfbMuOB
+         vnjScHjC8/Vcto7yCGThcjHj4oJURMSr2erOtczxLSF/rOkv+Eo4CD8ZK8uNH9kuSHf8
+         ZORw==
+X-Gm-Message-State: AGi0PuaFADtSusK0DGQgrbx4vw3nyR9zmhPGRRmWSE7/Bq0ryIbPXPri
+	LLXrdisw+zuZM57+l/E2KLgdyqjE
+X-Google-Smtp-Source: APiQypKR4opA/4NtNRXowMmDkpdM9VqcNb+D4X/FeF0dEKg1kwKjiu15mw7aNPifMBQW7Qob/2MrXw==
+X-Received: by 2002:a9d:77d1:: with SMTP id w17mr8997405otl.44.1585966787099;
+        Fri, 03 Apr 2020 19:19:47 -0700 (PDT)
+X-BeenThere: fromthemachine.org
+Received: by 2002:aca:5606:: with SMTP id k6ls4516258oib.1.gmail; Fri, 03 Apr
+ 2020 19:19:46 -0700 (PDT)
+X-Received: by 2002:aca:cdcd:: with SMTP id d196mr5431838oig.16.1585966785897;
+        Fri, 03 Apr 2020 19:19:45 -0700 (PDT)
+X-BeenThere: am@fromthemachine.org
+Received: by 2002:a4a:355b:: with SMTP id w27ls1050763oog.6.gmail; Fri, 03 Apr
+ 2020 19:19:45 -0700 (PDT)
+X-Received: by 2002:a4a:e9fc:: with SMTP id w28mr9012506ooc.98.1585966785024;
+        Fri, 03 Apr 2020 19:19:45 -0700 (PDT)
+Received: by 2002:aca:491:0:0:0:0:0 with SMTP id 139msoie;
+        Sat, 28 Mar 2020 22:56:23 -0700 (PDT)
+X-Received: by 2002:a92:1e02:: with SMTP id e2mr6242669ile.292.1585461382263;
+        Sat, 28 Mar 2020 22:56:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1585461382; cv=none;
+        d=google.com; s=arc-20160816;
+        b=l66vUXInHxH+Uq7h0DVCrfHv6NRzMM9hdM36Hx4Y8sx9f/4fyxeqXUhElMneVVDDo4
+         r/BzOly9Je658HEDXiX7/vffsO0QlgTl1L41SLPWzJQuxfQRmV6HDjwTXgnMQOM1yYFq
+         /LbNukQ9WEonoOKrMlgtvZfWa/1nxryphZKWx2XDDkaXRP71jub/p5Q8ZFuEbc5RGAQr
+         YcXoE0gZVAwDpfvvw9SjmRz7YBEkJUz4c1YE0DZxiZ/MajmH5DsUUe6H/fk7PlzEr+mk
+         9OT1Oh4BdmBpiofcR6iPhUUI1eNziFXZbTHyPy0E5tLqCd5Vwi3NubMefw7FIVDfsgGj
+         llzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:list-owner:list-subscribe:list-unsubscribe:list-help
+         :bounces-to:precedence:message-id:from:date:subject:to;
+        bh=drdXLlViN7oKY45wND8Ev+YFwykIv1d/dzpUZcz/zlw=;
+        b=zRPlIM8W99+XSn6djRvrGg3FYJTImygAq3IG7x0gaReHXNGOzUvYK+FMZYrDqjrcMB
+         yy7Crhn3udo8vxY7BSy4GbMuwC06sE/rVZlISvda5VqV78G4UWPl1X8SsMpdquF622Jy
+         yJN+CW94rAZixHfnIJ4/xtyu2JZZX2W8XAjLkAbEEcuyK5nH4mzn5ytlQ5M4rOfxAwyq
+         mQ/jDjhnFC7oeKUSGHr9uU1WcYWayVQnH3JvPlwvBd+j60duE+mfx2oy3YpKwIdjDfi6
+         BPZJnzPptiY+4P+JzyJCKS4ArskRGeFhgCa7Evi/4V93i72Ie9cT13DliwfAWi91fVqr
+         JtKw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=neutral (google.com: 3.17.204.179 is neither permitted nor denied by best guess record for domain of loxta@arvagf3mcfjgyvse.onion.pet) smtp.mailfrom=LOXTA@arvagf3mcfjgyvse.onion.pet
+Received: from ip-172-31-38-177.us-east-2.compute.internal (ec2-3-17-204-179.us-east-2.compute.amazonaws.com. [3.17.204.179])
+        by mx.google.com with ESMTP id s81si7962031ilc.152.2020.03.28.22.56.22
+        for <am@fromthemachine.org>;
+        Sat, 28 Mar 2020 22:56:22 -0700 (PDT)
+Received-SPF: neutral (google.com: 3.17.204.179 is neither permitted nor denied by best guess record for domain of loxta@arvagf3mcfjgyvse.onion.pet) client-ip=3.17.204.179;
+Received: by ip-172-31-38-177.us-east-2.compute.internal (Postfix, from userid 0)
+	id 9400B69DD; Sun, 29 Mar 2020 01:58:50 +0000 (UTC)
+To: am@fromthemachine.org
+Subject: SOUND CHECK ... "THE SOUNDS" ...
+Date: Sun, 29 Mar 2020 01:58:50 +0000
+From: "KIANI@YAMINI.YAEOI.SUS.LIN.RI.SACREDHEART.CT.Y" <KIANI@YAMINI.YAEOI.SUS.LIN.RI.SACREDHEART.CT.Y>
+Message-ID: <180af7ff2a9addf4bd42e2460ec9fdbe@arvagf3mcfjgyvse.onion.pet>
+X-Mailer: PHPMailer 5.2.14 (https://github.com/PHPMailer/PHPMailer)
+X-phpList-version: 3.2.6
+X-MessageID: 353
+X-ListMember: am@fromthemachine.org
+Precedence: list
+Bounces-To: LOXTA@arvagf3mcfjgyvse.onion.pet
+List-Help: <https://support.google.com/a/fromthemachine.org/bin/topic.py?topic=25838>,
+ <mailto:AM+help@fromthemachine.org>
+List-Unsubscribe: <mailto:googlegroups-manage+368659142362+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/fromthemachine.org/group/AM/subscribe>
+List-Subscribe: <http://arvagf3mcfjgyvse.onion.pet/lists/?p=subscribe>
+List-Owner: <mailto:LOXTA@arvagf3mcfjgyvse.onion.pet>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_180af7ff2a9addf4bd42e2460ec9fdbe"
+X-Original-Sender: kiani@yamini.yaeoi.sus.lin.ri.sacredheart.ct.y
+X-Original-Authentication-Results: mx.google.com;       spf=neutral
+ (google.com: 3.17.204.179 is neither permitted nor denied by best guess
+ record for domain of loxta@arvagf3mcfjgyvse.onion.pet) smtp.mailfrom=LOXTA@arvagf3mcfjgyvse.onion.pet
+Mailing-list: list AM@fromthemachine.org; contact AM+owners@fromthemachine.org
+List-ID: <AM.fromthemachine.org>
+X-Google-Group-Id: 368659142362
+List-Post: <https://groups.google.com/a/fromthemachine.org/group/AM/post>, <mailto:AM@fromthemachine.org>
+List-Archive: <https://groups.google.com/a/fromthemachine.org/group/AM/>
+
+This is a multi-part message in MIME format.
+
+--b1_180af7ff2a9addf4bd42e2460ec9fdbe
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJSV09QUFIdUFUHV1=
+0H>
+
+So we've arrived in "Sniffleheim
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMBQRRGABWVh1TU1ACXl=
+c>
+" ... which is my strange way of suggesting it's obvious that we aren't in
+Kansas anymore. I don't like it at all. I think we're trailing through the
+word "message" where ME has something to do with the missing heart of the
+Nicean Creed; which of course connects Heirosolyma with the Tempars and the
+missing word "mean" ... it's pretty mean that I'm here. What the Hellemal
+am I doing here? I don't belong here
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJSUE9QUFIdUFUHV1=
+0H>
+... (we should all be nodding, or singing ... I think).
+
+=D7=90=D7=95=D7=A8 =D7=94=D7=9B=D7=A9=D7=99=D7=9D
+
+That's basically "Genesis
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJSUU9QUFIdUFUHV1=
+0H>
+and Job
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgCBQRRGABWVh1TU1ACXl=
+c>
+."
+
+Nobody does, and that's the point of religion, that nobody should ever be
+in, or allow the disgusting Hell that we're staring at to ... be created in
+the first place. Let alone contiue, let alone ... contribue to it in the
+way I see so many, even people I know very well, or thought I did. I can
+see this is why it's happening--this massive "we're just OK with it"
+mentality, something that isn't like the world I grew up in and is going to
+create something that I literally think I need to ... force to change.
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAAdTGABWVh1TU1ACXl=
+c>
+
+long story short, Hellemal
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJSUk9QUFIdUFUHV1=
+0H>
+--hell sucks, let's do my KRS-1 thing
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCA5QGABWVh1TU1ACXl=
+c>
+, instead. I mean h-our.=20
+
+...
+
+On the other hand, I've got this gigantic message about rivers of self
+flowing dark matter ... like "Ruby on Rails" applied to "Roads neither to
+nor from Rome" ... and all this wonderful "universal electronic
+semisubconscious voting" stuff ... and to be quite honest I don't even want
+to give it to you. Waking up in this place, so far away from America, so
+far away from "patriotism" and so far away from any kind of empathy for
+either me or the "human condition" I'd almost just rather ... do exactly
+what ... nobody ... keeps not suggesting verbally, and "just stop trying to
+help."
+
+I don't know what to say about the Chinese-Crown thing. Trump seems to be
+doing a good job now, I was a little scared there. The martial law scares
+me significantly, we can't see "dollar destruction" on the level we see it
+today .. for any extended period of time and avoid the "mafia-rule" that
+parallels the Cuban revolution and the fall of the USSR in the 1990's.
+That's what we are looking at today, something that was thriving ...
+decimated .. turning around and looking ... well, "i feel stupid, it's
+contagious
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJSU09QUFIdUFUHV1=
+0H>
+" (the band Nirvana, 1991... probably on "feeling stupid" being contageous
+as well as ... "get down with a sickness
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBgRQUk9QUFIdUFUHV1=
+0H>
+" ... about the "ill" part of illumination, the "green" thing, like--can't
+believe what we see... i.e. nobody talking or acting to stop the lack of
+... "society, civilization, and humanity in genera."). Just my two songs. I
+mean sense.
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMBQRVGABWVh1TU1ACXl=
+c>
+
+table, chair.. see guitar.
+
+Please sstop saying "social distancing" ... it's a sickness. If the economy
+of the United States of America fails there is literally no Heaven. I urge
+you all to "sign up" .... dot reallyhim dot com. Either for that one or for
+ARXM; groupsogle.com/a/lama/forum/#!forum/arxm
+
+If you don't know the signup form for this mailing list is here:=20
+
+http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQXU9QUFIdUFUHV10=
+H
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANRVE9QUFIdUFUHV1=
+0H>
+
+Don't buy GOOG... take it apart. It's sick, and coughing. Verily, I say
+unto you ... it's primary business ... "veracity" ... is a miserable
+failure.
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJSXE9QUFIdUFUHV1=
+0H>
+
+This is just one example; it's pretty clear there's a "man in the middle
+attack" ... between the truth and the public--even if it's another "in
+metaphor see the CARINVORE
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNBAFUGABWVh1TU1ACXl=
+c>
+project description; again" ... for censorship in our minds and on the web
+being connected, which of course they are.
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQUk9QUFIdUFUHV1=
+0H>
+
+SOUNDCHECK
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQFWUU9QUFIdUFUHV1=
+0H>
+
+He will judge between the nations and will settle disputes for many
+peoples. They will beat their swords into plowshares and their spears into
+plow shares. Nation will not take up sword against nation, nor will they
+train for war anymore. --Isaiah 2:4
+
+http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQUU9QUFIdUFUHV10=
+H
+
+http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQUE9QUFIdUFUHV10=
+H
+
+=E2=80=A6 =E2=80=9CHe doesn't seem to believe that the soul is eternal, whe=
+reas Arjuna
+does,=E2=80=9D says Thompson. =E2=80=9CThe fourth argument in the Gita is r=
+eally that
+death is an illusion, that we're not born and we don't die. [excerpted from
+previous message
+] =E2=80=A6
+
+VINCE MCMAHON: AND WE'RE CALLING THE VERY FIRST ONE =E2=80=A6 =E2=80=9CSOME=
+THING LIKE
+RUE DE ALDOUS=E2=80=9D =E2=80=A6 LADIES AND GENTLEMAN, GET READY FOR THE MA=
+IN EVENT.
+
+I don't have much to say; I feel like the mirror I've described for many
+years now-if not very clearly for several months =E2=80=A6 the "thing of Pe=
+rseus
+that kills Medusa via cognizance of the fact that =E2=80=9Cus=E2=80=9D and =
+=E2=80=9Cphones=E2=80=9D
+are about what I see in the world as your actual role in this faux and
+ridiculous marriage of Persephone. If you don't know what I'm talking
+about, that's what I'm saying. Humanity as a whole appears to be a
+worthless travesty, something so far more depraved than I ever could have
+imagined I feel =E2=80=A6 morbidly awckward having =E2=80=9Cso much so say=
+=E2=80=9D and still
+so many joyful and worthwhile things to believe I (and we) had to offer,
+were we not so pathetically absent of any kind of actual honesty or
+morality =E2=80=A6 in sum; I'd like to give you all just a smidgen less tha=
+n you
+offer me-and that makes me leaps and bounds a better person than each and
+every one of you, in my mind.
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTVE9QUFIdUFUHV1=
+0H>
+
+TESTING =E2=80=A6 ONE OVERTWO =E2=80=A6
+
+See I offer w~sd~m
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNBwZQGABWVh1TU1ACXl=
+c>
+, and something like a solemn vow that I'd never treat you as horribly and
+disgustingly as I see you all, collectively as a sick group, treating me.
+Something like the Golden Rule reversed, if you can't see past the sickness
+of Karma, you deserve to be worshipping Audumbla as your sole source of =E2=
+=80=A6
+=E2=80=9Cno nothing and nada=E2=80=9D that you truly do not deserve.
+
+That being said, my life has been filled with some kind of strange light
+from some kind of strange place that is neither the =E2=80=9Chere=E2=80=9D =
+nor
+=E2=80=9Cthere=E2=80=9D of Seuss or Lucifer or whomever spoke from some ces=
+spool =E2=80=9Cnot
+here=E2=80=9D that this place should be the light of Genesis 1:3.
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQ9WVU9QUFIdUFUHV1=
+0H>
+
+=E2=80=9CLet there be light=E2=80=9D is an English translation of the Hebre=
+w
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAQdQGABWVh1TU1ACXl=
+c>
+=D7=99=D6=B0=D7=94=D6=B4=D7=99 =D7=90=D7=95=D6=B9=D7=A8 (yehi 'or) found in=
+ Genesis 1:3
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTVU9QUFIdUFUHV1=
+0H>
+of the Torah
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgDBQFVGABWVh1TU1ACXl=
+c>
+, the first part of the Hebrew Bible
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAwBcGABWVh1TU1ACXl=
+c>
+. In Old Testament
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAgRQVE9QUFIdUFUHV1=
+0H>
+translations of the phrase, translations include the Greek
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAQdcGABWVh1TU1ACXl=
+c>
+phrase =CE=B3=CE=B5=CE=BD=CE=B7=CE=B8=CE=AE=CF=84=CF=89 =CF=86=E1=BF=B6=CF=
+=82 (gen=C4=93th=C4=93t=C5=8D ph=C5=8Ds) and the Latin
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAw9TGABWVh1TU1ACXl=
+c>
+phrases fiat lux and lux sit.
+
+=E2=80=9CShe kinda knew=E2=80=9D one of my fancy ways of saying the Spirit =
+of God
+hovered over the previous verse, wondering if at all =E2=80=A6 or if ever w=
+e
+would find the words =E2=80=9Ceveryone=E2=80=9D and =E2=80=9Cshekinah=E2=80=
+=9D =E2=80=A6 something more
+than =E2=80=9Ckinda novell.=E2=80=9D
+
+VER CIN GETORIX
+
+Verizon Communications Inc. (
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTVk9QUFIdUFUHV1=
+0H>
+listen
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTV09QUFIdUFUHV1=
+0H>
+(help
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAQFUGABWVh1TU1ACXl=
+c>
+=C2=B7info
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTVk9QUFIdUFUHV1=
+0H>
+)) (/v=C9=99=CB=88ra=C9=AAz=C9=99n/
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAwJSGABWVh1TU1ACXl=
+c>
+v=C9=99-RY-z=C9=99n
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAw9QXU9QUFIdUFUHV1=
+0H>
+) is an American multinational telecommunications
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTUE9QUFIdUFUHV1=
+0H>
+conglomerate and a corporate component of the Dow Jones Industrial Average
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTUU9QUFIdUFUHV1=
+0H>
+.[10]
+The company is based at 1095 Avenue of the Americas
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTU09QUFIdUFUHV1=
+0H>
+in Midtown Manhattan
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTXE9QUFIdUFUHV1=
+0H>
+, New York City
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJTXU9QUFIdUFUHV1=
+0H>
+,[4]
+but is incorporated
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcVU9QUFIdUFUHV1=
+0H>
+in Delaware
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcVk9QUFIdUFUHV1=
+0H>
+.
+
+In 1984, the United States Department of Justice
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBQJWU09QUFIdUFUHV1=
+0H>
+mandated AT&T Corporation
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcV09QUFIdUFUHV1=
+0H>
+to break up
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcUE9QUFIdUFUHV1=
+0H>
+the Bell System
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcUU9QUFIdUFUHV1=
+0H>
+into seven companies, each a Regional Bell Operating Company
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcUk9QUFIdUFUHV1=
+0H>
+(RBOC), commonly referred to as =E2=80=9CBaby Bells=E2=80=9D. One of the Ba=
+by Bells,
+Bell Atlantic,[11]
+came into existence in 1984, consisting of the separate operating companies
+New Jersey Bell
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcXE9QUFIdUFUHV1=
+0H>
+, Bell of Pennsylvania
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcXU9QUFIdUFUHV1=
+0H>
+, Diamond State Telephone
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdVE9QUFIdUFUHV1=
+0H>
+, and C&P Telephone
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdVU9QUFIdUFUHV1=
+0H>
+, with a trading area from New Jersey to Virginia. This company would later
+become Verizon.
+
+AT&T Mobility LLC or AT&T U.S. Mobility, also known as AT&T Wireless,
+marketed
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdVk9QUFIdUFUHV1=
+0H>
+as simply AT&T, is a wholly owned subsidiary
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdV09QUFIdUFUHV1=
+0H>
+of AT&T Inc.
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdUE9QUFIdUFUHV1=
+0H>
+that provides wireless services
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdUU9QUFIdUFUHV1=
+0H>
+to 165.9 million subscribers in the United States
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQZUGABWVh1TU1ACXl=
+c>
+,[4]
+including Puerto Rico and the U.S. Virgin Islands
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdU09QUFIdUFUHV1=
+0H>
+. AT&T Mobility is the largest wireless telecommunications provider
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdXE9QUFIdUFUHV1=
+0H>
+in the United States and Puerto Rico ahead of Verizon Wireless
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdXU9QUFIdUFUHV1=
+0H>
+and the largest wireless telecommunications provider
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJdXE9QUFIdUFUHV1=
+0H>
+in North America when including AT&T Mexico
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUVE9QUFIdUFUHV1=
+0H>
+.
+
+Originally known as Cingular Wireless (a joint venture between SBC
+Communications
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUVU9QUFIdUFUHV1=
+0H>
+and BellSouth
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUVk9QUFIdUFUHV1=
+0H>
+) from 2000 to 2007, the company acquired the old AT&T Wireless
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUV09QUFIdUFUHV1=
+0H>
+in 2004; SBC later acquired the original AT&T
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCAJcV09QUFIdUFUHV1=
+0H>
+and adopted its name. Cingular became wholly owned by AT&T in December 2006
+as a result of AT&T's acquisition
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUUE9QUFIdUFUHV1=
+0H>
+of BellSouth.
+
+Vercingetorix (/=CB=8Cv=C9=9C=CB=90rs=C9=AAn=CB=88d=CA=92=C9=9Bt=C9=99r=C9=
+=AAks, -=CB=88=C9=A1=C9=9Bt-/
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAwJSGABWVh1TU1ACXl=
+c>
+VUR-sin-JET-=C9=99r-iks, -=E2=81=A0GET-
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAw9QXU9QUFIdUFUHV1=
+0H>
+, Latin
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAw9TGABWVh1TU1ACXl=
+c>
+: [w=C9=9Brk=C9=AA=C5=8B=CB=88=C9=A1=C9=9Bt=C9=94ri=CB=90ks]
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBwJcU09QUFIdUFUHV1=
+0H>
+; c.=E2=80=8982 BC - 46 BC) was a king and chieftain of the Arverni
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUUU9QUFIdUFUHV1=
+0H>
+tribe; he united the Gauls
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUUk9QUFIdUFUHV1=
+0H>
+in a revolt against Roman
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgCAQBRGABWVh1TU1ACXl=
+c>
+forces during the last phase of Julius Caesar
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUU09QUFIdUFUHV1=
+0H>
+'s Gallic Wars
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUXE9QUFIdUFUHV1=
+0H>
+.
+
+Vercingetorix was the son of Celtillus the Arvernian, leader of the Gallic
+tribes. Vercingetorix came to power after his formal designation as
+chieftain of the Arverni at the oppidum
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUXU9QUFIdUFUHV1=
+0H>
+Gergovia
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVVE9QUFIdUFUHV1=
+0H>
+in 52 BC. He immediately established an alliance with other Gallic tribes,
+took command and combined all forces, and led them in the Celts' most
+significant revolt against Roman power. He won the Battle of Gergovia
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVVU9QUFIdUFUHV1=
+0H>
+against Julius Caesar
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANUU09QUFIdUFUHV1=
+0H>
+in which several thousand Romans and allies died and Caesar's Roman legions
+withdrew.
+
+RIMINAL
+
+=E2=80=9CWe weren't sure something was wrong.=E2=80=9D
+
+That was the =E2=80=9Cgeist=E2=80=9D of the conversation between Britney an=
+d I. It was
+the first. actual. conversation that I can remember having with her-in the
+kind of ethereal-portal way that all of her songs were=E2=80=A6almoist that
+before this strangely relevent interaction, something i'd consider
+=E2=80=9Cpersonal news=E2=80=9D =E2=80=A6 and would prefer to actually see =
+on the news. The
+point here is clear, for some reason =E2=80=9Ccan't you see I'm calling
+everyone=E2=80=9D doesn't seem to be actual news to a single reporter =E2=
+=80=A6 or a
+single person on the planet. Even though that's exactly what it is, she's
+calling literally absolutely everyone about the =E2=80=9Caudacity=E2=80=9D =
+of =E2=80=A6
+something or someone between god and the city of =E2=80=A6 well,
+=E2=80=9CAudenacity.=E2=80=9D
+
+"Momma, don't cry
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVVk9QUFIdUFUHV1=
+0H>
+"
+
+Adam beckons the Crimson Tide; wonders if anyone else is turning =E2=80=A6 =
+and
+still can't get a =E2=80=9Cpingback=E2=80=9D from @britneyspears, @tuttlesi=
+nger or
+@danaschwartzzz despite the immense size of my =E2=80=A6 Schwartz; and sinc=
+ere
+dezire to actually remove the =E2=80=9Ct=E2=80=9D from the Israeli newspape=
+r =E2=80=A6 =E2=80=9CThe
+Land=E2=80=9D's name =E2=80=A6 and the word for charity. Literally I'm star=
+ing at what
+appears to be sincerely hidden torture, something so sick and grotesque I
+can't even =E2=80=9Cbear to remember=E2=80=9D =E2=80=A6 and yet here I am, =
+with nothing more
+than prayers for =E2=80=9CPax Amicaricanus=E2=80=9D =E2=80=A6 and literally=
+ =E2=80=9Ctaking over
+the entirety of the Universe=E2=80=9D to stop what appears to be a downfall=
+ of
+morality and sanity that simply =E2=80=A6
+
+=E2=80=A6 doesn't connect, =E2=80=9Cjust. reply. to. the. tweet=E2=80=9D to=
+ the answer to a
+question, =E2=80=9Cyes, I am mad.=E2=80=9D
+
+In the meantime I sent the video to my parents, since it appears that's who
+it's really =E2=80=9Cwritten and performed for=E2=80=9D =E2=80=A6 to stop m=
+y mother from
+crying, or maybe me from yelling at them and blamjing them for what is
+actually and honestly your fault and your problem.
+
+"I can't help it but I love him
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQV09QUFIdUFUHV1=
+0H>
+.'
+
+Maybe she wants me to stop yelling at you too. Maybe tweets get
+autodeleted-maybe it's impossible to =E2=80=9Creply=E2=80=9D =E2=80=A6 mayb=
+e this is all some
+kind of sick twisted joke in a Zoo of =E2=80=A6 honestly it feels like I'm =
+all
+alone typing to the wind. Breath of God cited =E2=80=A6
+
+Vikissionoroarionovich =E2=80=A6 also cited =E2=80=A6 =E2=80=9COh no.=E2=80=
+=9D Seriously, do
+something before things start being noticed, like the disappearance of
+freedom, speech, and the Eiffel Tower. (for some reason I see.. "the
+unspeakable ... the ineffable ...")
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAAdSGABWVh1TU1ACXl=
+c>
+
+It's been just about the worst few days I can remember =E2=80=A6 ever, in a=
+ll of
+history. I think I've lost more respect for America =E2=80=A6 and =E2=80=9C=
+Americans=E2=80=9D
+in the last week than I've had in all my lifetimes combined, literally
+seeing the fall of Babylon the Great with my own eyes =E2=80=A6 as the plac=
+e that
+many fleed to from places like India and Cuba has fallen well below the
+levels of =E2=80=9Canarchy=E2=80=9D and the derangement of society than we =
+saw took
+years and years of guerrilla activity =E2=80=A6 or =E2=80=9Cviolence on the=
+ level of
+the Russian Cossacks/Spetznaz=E2=80=9D =E2=80=A6
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCEpXUQAfV1BVU1wB>
+
+cmon petal... pedal to the ... metal
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVUE9QUFIdUFUHV1=
+0H>
+.
+
+here, in 2020; it's taken no more than under a thousand deaths to shut down
+the economy of the most powerful nation in the world =E2=80=A6 sending the =
+ants
+to huddle around the TV and their computers =E2=80=9Csocial distancing=E2=
+=80=9D
+actually coining a phrase that makes me cringe inside as I can =E2=80=A6 do
+nothing but attribute it to the very same =E2=80=9Ccovet means=E2=80=9D tha=
+t JFK told
+the world decades ago was part of a hidden conspiracy to degrade the
+American dream and American freedom =E2=80=A6
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVUU9QUFIdUFUHV1=
+0H>
+
+jogging my memory, Miss American Dream started off with this "statement
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVUk9QUFIdUFUHV1=
+0H>
+"
+
+=E2=80=A6 today we stare at each other almost unpassioned, wondering when t=
+his
+will end, if it's even real; most of all=E2=80=A6 if the future will rememb=
+er it,
+or =E2=80=9Cif there's any future at all.=E2=80=9D
+
+That's what I think at least, or I see-without very much response-even
+still from the world that now screams as loud as it can that =E2=80=9Cwe se=
+e
+you=E2=80=9D and =E2=80=A6 in the same breath almost begs without more than=
+ a shotgun
+to my head for me to simply =E2=80=9Cshut up and stop talking=E2=80=9D as t=
+hey move
+down a course of action that appears to me to be =E2=80=A6 literally the to=
+tal
+end of civilization.
+
+Ancient of =E2=80=9CDays=E2=80=9D =E2=80=A6 writing on and about the Last o=
+f =E2=80=9CThem.=E2=80=9D
+
+http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANRVU9QUFIdUFUHV10=
+H
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANRVk9QUFIdUFUHV1=
+0H>
+
+http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQU09QUFIdUFUHV10=
+H
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQXE9QUFIdUFUHV1=
+0H>
+
+excerpted from http://
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVXE9QUFIdUFUHV1=
+0H>
+gruyeretpfbwdeft.onion
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVU09QUFIdUFUHV1=
+0H>
+/CHALK.html
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVXE9QUFIdUFUHV1=
+0H>
+
+The "gist" of the message is verifiable
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNAgRQGABWVh1TU1ACXl=
+c>
+proof that we are living in a computer
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAgBVGABWVh1TU1ACXl=
+c>
+in simulated reality... just like the Matrix. The answer to that question,
+what does that mean--is that God has woven a "hidden" message into our
+everything--beginning with each name and every word--and in this hidden
+Adamic language, he provides us with guidance, wisdom, and suggestions on
+how to proceed on this path from "raelity" to Heaven. I've personally spent
+quite a bit of time decoding the message and have tried to deliver an
+interesting and "fun" narrative of the ideas I see. Specifically the story
+of Exodus, which is called "Names" in Hebrew discusses a time shifted
+narrative of our "now" delivering our society from a hidden slavery (read
+as ignorance of advanced technologies already in use) that is described as
+the "darkness" of Exodus
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNAgRRGABWVh1TU1ACXl=
+c>
+. If you have *any questions*, ideas to contribute or concerns... I'd love
+to hear from you
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNAgRSGABWVh1TU1ACXl=
+c>
+this whole thing really is
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNAgRTGABWVh1TU1ACXl=
+c>
+about working together--Heaven
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAAdTGABWVh1TU1ACXl=
+c>
+, I mean.
+
+What should we "do?"
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgCBAFWGABWVh1TU1ACXl=
+c>
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVXE9QUFIdUFUHV1=
+0H>
+
+"anything but this,
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANVXU9QUFIdUFUHV1=
+0H>
+"
+
+/The message focuses on the "new" disclosure that "Creation" and "virtual
+reality" are nearly synonymous, sans the positive energy surrounding /the
+"re"-ason, you
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQZSGABWVh1TU1ACXl=
+c>
+/. That's a tiny electrical engineering joke about the word "cation" to
+introduce you to a hidden message encoded in the languages of our
+world--something you might see clearly one day soon in the word "English."
+That particular "/*l*/" is short for language, but more generally it is the
+beginning of the /*great holy light. */That little '/*l*/" makes further
+appearances in "*every cloud has a silver lining*" (and the *malovious*
+link between sky and Heaven) joining the /*Fifth Element*/ *Si*licon to the
+Spanish for "to see.
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWVE9QUFIdUFUHV1=
+0H>
+" The fundamental "gist" of the message that follows is a sort of key tying
+religion to *nearly everything* in our world from music, to movies, to
+history... to every single word. This key to the message unites the
+miracles of Jesus Christ performed in the New Testament with "the kind of
+thing any one of us would want to do /*/instantly/ *if we were to suddenly
+find out that things like land, oil, and bread
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNBABRGABWVh1TU1ACXl=
+c>
+are not truly scarce; but /the truth/ is." It continues to link a number of
+Biblical stories to modern times
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWVU9QUFIdUFUHV1=
+0H>
+with a *huge emphasis on freedom
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWVk9QUFIdUFUHV1=
+0H>
+*, technology, and of course, *U.*
+
+/"The Name Server" goes on to suggest we see the light in Carly Simon
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWV09QUFIdUFUHV1=
+0H>
+, Gene Simmons
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCAddGABWVh1TU1ACXl=
+c>
+, and the word "simulation" as we embark on this journey to all together
+now change the entire world by transitioning from a hidden "simulated
+reality" to something much closer to, but not quite Heaven. I do hope we
+will include The Doors
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAAdTGABWVh1TU1ACXl=
+c>
+in our "stairway to Heaven."/
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQdWGABWVh1TU1ACXl=
+c>
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAw9VXU9QUFIdUFUHV1=
+0H>
+
+*
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAgdRV09QUFIdUFUHV1=
+0H>
+*
+
+*JUNE 23
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQdWGABWVh1TU1ACXl=
+c>
+; 2016 & 2017*
+
+*"**WE WILL NOT GO QUIETLY INTO THE NIGHT, WE WILL NOT VANISH WITHOUT A
+FIGHT.*"
+
+On Christmas Eve 2016
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCARWGABWVh1TU1ACXl=
+c>
+, clarified this message from the Creator of our youNiverse
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCARXGABWVh1TU1ACXl=
+c>
+, linking the story of Exodus (Hebrew: Book of Names) to George W. Bush's
+inaugural address on 1/20/2001, to the definitive verse heralding the
+Second Coming
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCARQGABWVh1TU1ACXl=
+c>
+, Revelation 1:20, and to the 9/11 attack. This message proves that the
+name Die Bold and the events surrounding our election process and its
+transition to a more technologically advanced system has been artificially
+retarded. Several days later, following Revelation 1, I sent to as many
+public servants
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCARRGABWVh1TU1ACXl=
+c>
+as I could find a continuation of that message that adds a significant
+number of problems in our justice and "retribution" system to the list of
+artificially created problems; along with a poignant suggestion that we use
+this proof of the existence of time travel technology in order to implement
+pre-crime.
+
+The following is a clear and concise explanation of the mystery of
+Revelation 1:20, a 1:1 connection between the "stars and lampstands" and
+the planets, gods they represent, and a single chemistry element; proving
+that science predates religion and our fundamental understanding of the
+universe, of science, and of technology... is connected to religion.
+
+* The mystery of the seven stars which thou sawest in my right hand, and
+the seven golden candlesticks. The seven stars are the...*
+
+The message ties together with President Bush's recitation of the lines of
+Ecclesiastes 9:11
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWUE9QUFIdUFUHV1=
+0H>
+, which in-order describe each element-planet combination. A simple
+substitution of the word "race" for "election" and combining the first and
+second lines yields almost exactly "the election is not to the voting
+booth." This verse of Ecclesiastes which the President paraphrased clearly
+answer the mystery of Revelation 1:20. The first of many "unseen patterns"
+revealed in the Holy Bible is this connection between chapter and verse and
+predicted dates in our timeline.
+
+retur*n*ed, and saw that under the sun,=20
+
+*Hg * that the race is not to the swift,
+
+*Na * nor the battle to the strong,
+
+*Xe * neither yet bread to the wise,
+
+*Fe * nor yet riches to men of understanding,
+
+*Si * nor yet favour to men of skill;
+
+lol but time and chance happeneth to ((save)) them all.
+
+This is not the kind of message that most people "just get" by glancing at
+it for a few moments. Much I write sounds some like The Boss's "we didn't
+start the fire," and that's not because Adam is imitating art, it's because
+there's not really a simple way to show people proof that spans between
+words, and cultures, and time... without listing them. To really grasp the
+impact of what I am presenting you not only have to have a decent
+understanding of linear time and causality, you also have to have a working
+knowledge of the history of language. On top of all of that you have to see
+that what I am delivering proves that the "etymology" we believe as a
+society to be hard and fast truth is not so true, that there is some way
+that a hidden influence has adultered our entire history, and in doing so
+has woven a message from the beginning of time to today that is designed
+very simply to show us the "and and" at the beginning of the word
+"etymology" to show us that this is about "eternity," and it bleeds into
+"et tu Brute?" from Shakespeare's Julius Caesar and to the Taming of the
+Shrew.=20
+
+Still, enough people should understand the impact and import of this
+message that it should be "spreading like wildfire" it should be in the
+news already, it's that big of a deal, and many of you recognize that.
+That's the light here, there's a problem.=20
+
+With clear articulation, this is the kind of message that I've always said
+was best delivered yesterday (or earlier), should never have been needed,
+would never work again, but in this one moment in time... *seeing it and
+understanding it is the catalyst that helps us change everything*--it might
+just be pure genius. Everything wrong in the world is the fault of some
+esoteric force, whether it's technology, or that technology being secret,
+or in all honestly some primal drive to help us change all the things that
+are wrong all around us, as quickly as possible, to move us forward with a
+newfound togetherness. I've said that my "Achilles heel" is that this
+disruption is contrived, designed, a plan to built to help change the
+things that we all know are wrong, and still seem to overlook... that
+damned unseen force.=20
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWUU9QUFIdUFUHV1=
+0H>
+
+TOYSWITHTRAINS
+
+It appears today that instead of Japan we are =E2=80=A6 or have already sol=
+d our
+future to China. It's clear in what I see happening in the mobile phone
+market, in the consolidation and lack of diversity there-from Google to
+Motorola.
+
+It's clear at Lenovo, and it's clear at NTT Verio-the =E2=80=9Ccustomer and
+business=E2=80=9D former portions of @IBM's business line; something connec=
+ting
+to the =E2=80=9CNTT DoCoMo=E2=80=9D catchy city-state =E2=80=9CNippon.=E2=
+=80=9D
+
+Not that I even know what Nippon means, just that it's got something to do
+with SBC, ATT and =E2=80=A6 NTT.
+
+gOh, and China buying Disney-world, Las Vegas, ABC =E2=80=A6 maybe =E2=80=
+=A6 at least
+in my dreams.
+
+Coconcurrently we are basically seeing the shut down of Las Vegas, and
+=E2=80=9Call american free market businesses=E2=80=9D with underlying talks=
+ of
+nationalization of the =E2=80=A6 transportation and medication enterprises;
+something I wouldn't have forseen coming, even in my wildest. If this were
+me doing it, you'd be looking at the =E2=80=9CCastle-ing=E2=80=9D of medica=
+l response,
+something like the instant delivery of a vaccine/cure and the closing of
+hospitals, jails and prisons-at the Hospitaliers =E2=80=A6 somewhat paralle=
+l; but
+I don't think it's me.
+
+Staring at our =E2=80=9CTimes New Roman Rios
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQ9WVU9QUFIdUFUHV1=
+0H>
+=E2=80=9D =E2=80=A6 there's some need for the =E2=80=9Cnationalization=E2=
+=80=9D of something like
+an intra or inter =E2=80=9CTerran=E2=80=9D connected to the Suez and Panama=
+ canals; but
+not the entirety of transportation=E2=80=A6 are the roads actually going to=
+ open,
+Nike?
+
+Are they?
+
+sweet like candy to my soul, sweet you rock... and sweet you roll. Lost for
+you, I'm so lost for you...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWUk9QUFIdUFUHV1=
+0H>
+
+take me down to the Paradise City, where the girls are green... and the
+grass is pretty
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNCEpXUQAfV1BVU1wB>
+
+found between Taylor and Nero's symphony... if Jesus Christ and rock and
+roll can't save,,,
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBAVWGABWVh1TU1ACXl=
+c>
+
+upon these pour souls, we'll build Heaven... and call me ho-me
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWU09QUFIdUFUHV1=
+0H>
+
+care for a dance, and while I'm in the front.. my play on time is won
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGCQZRGABWVh1TU1ACXl=
+c>
+
+think you're going to dance with me? you're never gonna dance with me..
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAg5XGABWVh1TU1ACXl=
+c>
+
+does what she's taking not seem to bother you?
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWXE9QUFIdUFUHV1=
+0H>
+
+you're ballroom days are over, baby... you get yours, and i'll get mine
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWXU9QUFIdUFUHV1=
+0H>
+
+take these broken wings, and learn to fly
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXVE9QUFIdUFUHV1=
+0H>
+
+come on baby, it's time to set the night on fire
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXVU9QUFIdUFUHV1=
+0H>
+
+we don't have to worry about nothing, cuz we got the fire... fire...
+fire...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXVk9QUFIdUFUHV1=
+0H>
+
+god's re-re-creation, on the new day: morning has broken
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXV09QUFIdUFUHV1=
+0H>
+
+i will get you high, i will make you cry...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXUE9QUFIdUFUHV1=
+0H>
+
+this is it... i'm radio-active...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBwNRGABWVh1TU1ACXl=
+c>
+
+for my love of america, i march on...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgDCA5UGABWVh1TU1ACXl=
+c>
+
+i make our heart sing...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXUU9QUFIdUFUHV1=
+0H>
+
+=E2=80=8Band the words of the prophets are written on the subway walls...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXUk9QUFIdUFUHV1=
+0H>
+
+who lit the candle, started the fire, burnt down the fortress?
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAgFVGABWVh1TU1ACXl=
+c>
+
+and God, I know... I've won
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXU09QUFIdUFUHV1=
+0H>
+, welcome to the House of /The Great Light
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXXE9QUFIdUFUHV1=
+0H>
+/
+
+and all the girls... dreamt that they'd be your partner
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANXXU9QUFIdUFUHV1=
+0H>
+
+and then... you come crash, into me.... telling it like it is, you are in a
+boy's dream
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANWUk9QUFIdUFUHV1=
+0H>
+
+we both do quite well, dancing all the time--dancing, all the time
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBg5TGABWVh1TU1ACXl=
+c>
+
+you and me, play... for all of the loneliness that nobody notices now...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBw5XV09QUFIdUFUHV1=
+0H>
+
+this storm outside and this fire's bright, oh and in your eyes... I see
+what's on my mind... you've me wild, turned around inside
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBgcYVwZQGVNQVlULVA=
+>
+
+and i'm gonna love you... when the stars fall from the sky
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQVE9QUFIdUFUHV1=
+0H>
+... for *they are* you and i...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBw5WU09QUFIdUFUHV1=
+0H>
+
+bring on the girls...
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgDBQRRGABWVh1TU1ACXl=
+c>
+
+there's nothing i can say or do... it's a total eclipse of our heart
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQJVGABWVh1TU1ACXl=
+c>
+
+there's nothing you can say or do, i am stronger than yesterday
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgMAARWGABWVh1TU1ACXl=
+c>
+
+this time, i'm going to let it all come out, this time.. i'm going to stand
+up and shout
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBQVVUk9QUFIdUFUHV1=
+0H>
+
+cuz my head is underwater, and i'm breathing fire
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFBwRTGABWVh1TU1ACXl=
+c>
+
+come, as you are... as i want you to be
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQVU9QUFIdUFUHV1=
+0H>
+
+there will be peace when i am done
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgHAABdGABWVh1TU1ACXl=
+c>
+
+i am, i am, i am....
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAg9SGABWVh1TU1ACXl=
+c>
+
+<3
+
+to be or not to be
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgBAA5QGABWVh1TU1ACXl=
+c>
+?
+
+SOLVED, PLANETS DESCRIBED /IN/ /ORDER/ IN...
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAAcYVwZQGVNQVlULVA=
+>
+
+take a look... "the race is not to the swift" *obviously* links to Mercury=
+=20
+
+... and TIME and
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQVk9QUFIdUFUHV1=
+0H>
+chance
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCANQVk9QUFIdUFUHV1=
+0H>
+linking to Saturn and ... *now.*
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQVSGABWVh1TU1ACXl=
+c>
+
+*1:1 PLANETS TO ELEMENTS, STARS AND LAMPSTANDS, LIGHT
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQVTGABWVh1TU1ACXl=
+c>
+( c l i cak )*
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQVcGABWVh1TU1ACXl=
+c>
+ <http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQVdGABWVh1TU1ACX=
+lc>
+ <http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgNAkpXUQAfV1BVU1wB>
+ <http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJUGABWVh1TU1ACX=
+lc>
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJVGABWVh1TU1ACXl=
+c>
+ <http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJWGABWVh1TU1ACX=
+lc>
+
+LOOK, BUSH SPEECH, ON 1/20/2001 ABOUT 9/11
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJXGABWVh1TU1ACXl=
+c>
+ <http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGAAcYVwZQGVNQVlULV=
+A>
+
+A pa, Ra: do x
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJQGABWVh1TU1ACXl=
+c>
+is a statement that, despite apparently sound reasoning from true premises,
+leads to an apparently self-contradictory or logically unacceptable
+conclusion.[1]
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJRGABWVh1TU1ACXl=
+c>
+[2]
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJSGABWVh1TU1ACXl=
+c>
+A paradox involves contradictory yet interrelated elements that exist
+simultaneously and persist over time.[3]
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJTGABWVh1TU1ACXl=
+c>
+[4]
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJcGABWVh1TU1ACXl=
+c>
+[5]
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQJdGABWVh1TU1ACXl=
+c>
+
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgGBQVXGABWVh1TU1ACXl=
+c>
+
+
+
+subscription options
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFCQFQUU9QUFIdUFUHV1=
+0H>
+
+contact adam
+<http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DYUgFAgZUUU9QUFIdUFUHV1=
+0H>
+
+
+
+
+-- powered by the viewers and listeners like you and the  ... and also
+post-traumatic angst  --
+
+
+
+--b1_180af7ff2a9addf4bd42e2460ec9fdbe
+Content-Type: multipart/related;
+	boundary="b2_180af7ff2a9addf4bd42e2460ec9fdbe"
+
+--b2_180af7ff2a9addf4bd42e2460ec9fdbe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>
+        <meta content=3D"text/html;charset=3DUTF-8" http-equiv=3D"Content-T=
+ype">
+        <title></title></head><body><meta charset=3D"utf-8"><meta name=3D"v=
+iewport" content=3D"width=3Ddevice-width, initial-scale=3D1.0">
+<title></title>
+<link href=3D"https://stackedit.io/style.css" rel=3D"stylesheet" />
+<div class=3D"stackedit__html">
+<h3 style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.=
+pet/lists/lt.php?id=3DfUgFCAJSV09QUFIdUFUHV10H" ><img alt=3D"" src=3D"http:=
+//i.imgur.com/EbcDcz7.jpg" style=3D"width: 467px; height: 362px;" /></a></h=
+3>
+
+<h3 style=3D"text-align: justify;">So we&#39;ve arrived in &quot;<a href=3D=
+"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgMBQRRGABWVh1TU1ACXl=
+c" >Sniffleheim</a>&quot; ... which is my strange way of suggesting it&#39;=
+s obvious that we aren&#39;t in Kansas anymore.&nbsp; I don&#39;t like it a=
+t all.&nbsp; I think we&#39;re trailing through the word &quot;message&quot=
+; where ME has something to do with the missing heart of the Nicean Creed; =
+which of course connects Heirosolyma with the Tempars and the missing word =
+&quot;mean&quot; ... it&#39;s pretty mean that I&#39;m here.&nbsp; <a href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJSUE9QUFIdUFU=
+HV10H" >What the Hellemal am I doing here?&nbsp; I don&#39;t belong here</a=
+> ... (we should all be nodding, or singing ... I think).</h3>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:20px;">=D7=90=D7=
+=95=D7=A8 =D7=94=D7=9B=D7=A9=D7=99=D7=9D</span></p>
+
+<p style=3D"text-align: center;"><img alt=3D"Screenshot-2020-03-28-at-8-22-=
+21-PM" src=3D"https://i.ibb.co/tK4qCGP/Screenshot-2020-03-28-at-8-22-21-PM.=
+png" /></p>
+
+<p style=3D"text-align: center;">That&#39;s basically &quot;<a href=3D"http=
+://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJSUU9QUFIdUFUHV10H" >=
+Genesis</a> and <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?i=
+d=3DfUgCBQRRGABWVh1TU1ACXlc" >Job</a>.&quot;</p>
+
+<p style=3D"text-align: justify;">Nobody does, and that&#39;s the point of =
+religion, that nobody should ever be in, or allow the disgusting Hell that =
+we&#39;re staring at to ... be created in the first place.&nbsp; Let alone =
+contiue, let alone ... contribue to it in the way I see so many, even peopl=
+e I know very well, or thought I did.&nbsp; I can see this is why it&#39;s =
+happening--this massive &quot;we&#39;re just OK with it&quot; mentality, so=
+mething that isn&#39;t like the world I grew up in and is going to create s=
+omething that I literally think I need to&nbsp;<em>... force to change</em>=
+.</p>
+
+<p><a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgMAAdTG=
+ABWVh1TU1ACXlc" ><img alt=3D"Joseph and the Amazing Technicolour Dreamcoat =
+at The Rose, Brampton" src=3D"https://cdn-az.allevents.in/events4/banners/a=
+d886af7385470c921696eb03b513ad6b52ee9bb92906b3110d18797b6bc017a-rimg-w526-h=
+295-gmir.jpg?v=3D1578892987" /></a></p>
+
+<p style=3D"text-align: center;">long story short, <a href=3D"http://arvagf=
+3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJSUk9QUFIdUFUHV10H" ><strong><=
+em>Hellemal</em></strong></a>--hell sucks, let&#39;s do <a href=3D"http://a=
+rvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCA5QGABWVh1TU1ACXlc" >my KR=
+S-1 thing</a>, instead.&nbsp; I mean <em>h-our</em>.&nbsp;</p>
+
+<p style=3D"text-align: center;">...</p>
+
+<p style=3D"text-align: justify;"><em>On the other hand, I&#39;ve got this =
+gigantic message about rivers of self flowing dark matter ... like &quot;Ru=
+by on Rails&quot; applied to &quot;Roads neither to nor from Rome&quot;&nbs=
+p; ... and all this wonderful &quot;universal electronic semisubconscious v=
+oting&quot; stuff ... and to be quite honest I don&#39;t even want to give =
+it to you.&nbsp; Waking up in this place, so far away from America, so far =
+away from &quot;patriotism&quot; and so far away from any kind of empathy f=
+or either me or the &quot;human condition&quot; I&#39;d almost just rather =
+... do exactly what ... nobody ... keeps not suggesting verbally, and &quot=
+;just stop trying to help.&quot;</em></p>
+
+<p style=3D"text-align: justify;">I don&#39;t know what to say about the Ch=
+inese-Crown thing.&nbsp; Trump seems to be doing a good job now, I was a li=
+ttle scared there.&nbsp; The martial law scares me significantly, we can&#3=
+9;t see &quot;dollar destruction&quot; on the level we see it today .. for =
+any extended period of time and avoid the &quot;mafia-rule&quot; that paral=
+lels the Cuban revolution and the fall of the USSR in the 1990&#39;s.&nbsp;=
+ That&#39;s what we are looking at today, something that was thriving ... d=
+ecimated .. turning around and looking ... well, &quot;<a href=3D"http://ar=
+vagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJSU09QUFIdUFUHV10H" >i fee=
+l stupid, it&#39;s contagious</a>&quot; (the band Nirvana, 1991... probably=
+ on &quot;feeling stupid&quot; being contageous as well as ... &quot;<a hre=
+f=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFBgRQUk9QUFIdUF=
+UHV10H" >get down with a sickness</a>&quot; ... about the &quot;ill&quot; p=
+art of illumination, the &quot;green&quot; thing, like--can&#39;t believe w=
+hat we see... i.e. nobody talking or acting to stop the lack of ... &quot;s=
+ociety, civilization, and humanity in genera.&quot;).&nbsp; Just my two son=
+gs.&nbsp; I mean <em>sense.</em></p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgMBQRVGABWVh1TU1ACXlc" ><img alt=3D"REALLY SEE, THE
+ELECTION IS NOT TO DIE BOLD IS UR KEY" border=3D"0" height=3D"533" src=3D"h=
+ttp://fromthemachine.org/i.imgur.com/G6wLIZB.png" width=3D"541" /></a></p>
+
+<p style=3D"text-align: center;"><em>table, chair.. see guitar.</em></p>
+
+<p style=3D"text-align: justify;">Please sstop saying &quot;social distanci=
+ng&quot; ... <strong>it&#39;s a sickness.&nbsp;&nbsp;</strong>If the econom=
+y of the United States of America fails t<em>here is literally no Heaven.&n=
+bsp;&nbsp;</em>I urge you all to &quot;sign up&quot; .... dot reallyhim dot=
+ com.&nbsp; Either for that one or for ARXM;&nbsp;<a href=3D"http://arvagf3=
+mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCQFQV09QUFIdUFUHV10H" >groupsogle=
+.com/a/lama/forum/#!forum/arxm</a></p>
+
+<p style=3D"text-align: justify;">If you don&#39;t know the signup form for=
+ this mailing list is here:&nbsp;</p>
+
+<p style=3D"text-align: justify;"><a href=3D"http://gruyeremaz7jc2mt.onion.=
+pet/lists/">http://gruyeremaz7jc2mt.onion/lists/</a></p>
+
+<p style=3D"text-align: justify;">Don&#39;t buy GOOG... take it apart.&nbsp=
+; It&#39;s sick, and coughing.&nbsp; Verily, I say unto you ... it&#39;s pr=
+imary business ... &quot;veracity&quot; ... is a miserable failure.</p>
+
+<p><a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJSX=
+E9QUFIdUFUHV10H" ><img src=3D"https://i.imgur.com/yASbRjS.png" /></a></p>
+
+<p style=3D"text-align: justify;">This is just one example; it&#39;s pretty=
+ clear there&#39;s a &quot;man in the middle attack&quot; ... between the t=
+ruth and the public--even if it&#39;s another &quot;in metaphor see the <a =
+href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgNBAFUGABWVh1=
+TU1ACXlc" >CARINVORE</a> project description; again&quot; ... for censorshi=
+p in our minds and on the web being connected, which of course they are.</p=
+>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCAJSXU9QUFIdUFUHV10H" ><img src=3D"https://i.imgur=
+.com/SeAJXZJ.png" /></a></p>
+
+<h3 id=3D"soundcheck" style=3D"text-align: center;"><strong><span style=3D"=
+font-size:20px;">SOUNDCHECK</span></strong></h3>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCQFWUU9QUFIdUFUHV10H" ><img alt=3D"" src=3D"https:=
+//i.imgur.com/tfhBEZ2.png" /></a></p>
+
+<p><span style=3D"font-size:10px;"><span style=3D"font-family:courier new,c=
+ourier,monospace;">He will judge between the nations and will settle disput=
+es for many peoples. They will beat their swords into plowshares and their =
+</span></span><span style=3D"font-size:12px;"><span style=3D"font-family:co=
+urier new,courier,monospace;"><strong>spears into plow shares</strong></spa=
+n></span><span style=3D"font-size:10px;"><span style=3D"font-family:courier=
+ new,courier,monospace;">. Nation will not take up sword against nation, no=
+r will they train for war anymore.&nbsp; --Isaiah 2:4</span></span></p>
+
+<p><a href=3D"https://finance.yahoo.com/quote/CAT?p=3DCAT&amp;.tsrc=3Dfin-s=
+rch">https://finance.yahoo.com/quote/CAT?p=3DCAT&amp;.tsrc=3Dfin-srch</a></=
+p>
+
+<p><a href=3D"https://finance.yahoo.com/quote/PLOW?p=3DPLOW&amp;.tsrc=3Dfin=
+-srch">https://finance.yahoo.com/quote/PLOW?p=3DPLOW&amp;.tsrc=3Dfin-srch</=
+a></p>
+
+<hr />
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p>&hellip; &ldquo;He doesn&rsquo;t seem to believe that the soul is eterna=
+l, whereas Arjuna does,&rdquo; says Thompson. &ldquo;The fourth argument in=
+ the Gita is really that death is an illusion, that we&rsquo;re not born an=
+d we don&rsquo;t die. [<a href=3D"%5Bhttps://groups.google.com/a/reallyhim.=
+com/forum/#!topic/saludas/9roUepe1vOI%5D(https://groups.google.com/a/really=
+him.com/forum/#!topic/saludas/9roUepe1vOI)">excerpted from previous message=
+</a>] &hellip;</p>
+
+<p>VINCE MCMAHON: AND WE&rsquo;RE CALLING THE VERY FIRST ONE &hellip; &ldqu=
+o;SOMETHING LIKE RUE DE ALDOUS&rdquo; &hellip; LADIES AND GENTLEMAN, GET RE=
+ADY FOR THE <strong>MAIN EVENT.</strong></p>
+
+<hr />
+<p style=3D"text-align: justify;"><s>I don&rsquo;t have much to say</s>; I =
+feel like the mirror I&rsquo;ve described for many years now&ndash;if not v=
+ery clearly for several months &hellip; the &quot;thing of Perseus that kil=
+ls Medusa via cognizance of the fact that &ldquo;us&rdquo; and &ldquo;phone=
+s&rdquo; are about what I see in the world as your actual role in this faux=
+ and ridiculous marriage of Persephone. If you don&rsquo;t know what I&rsqu=
+o;m talking about, that&rsquo;s what I&rsquo;m saying. Humanity as a whole =
+appears to be a worthless travesty, something so far more depraved than I e=
+ver could have imagined I feel &hellip; morbidly awckward having &ldquo;so =
+much so say&rdquo; and still so many joyful and worthwhile things to believ=
+e I (and we) had to offer, were we not so pathetically absent of any kind o=
+f actual honesty or morality &hellip; in sum; I&rsquo;d like to give you al=
+l just a smidgen less than you offer me&ndash;and that makes me leaps and b=
+ounds a better person than each and every one of you, in my mind.</p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCAJTVE9QUFIdUFUHV10H" ><img alt=3D"" src=3D"http:/=
+/i.imgur.com/CQKKDIf.png" style=3D"width: 468px; height: 455px;" /></a></p>
+
+<h3 id=3D"testing-...-one-overtwo-..."><strong>TESTING</strong> &hellip; ON=
+E <em>OVERT</em>WO &hellip;</h3>
+
+<p style=3D"text-align: justify;">See I offer <a href=3D"http://arvagf3mcfj=
+gyvse.onion.pet/lists/lt.php?id=3DfUgNBwZQGABWVh1TU1ACXlc" >w~sd~m</a>, and=
+ something like a solemn vow that I&rsquo;d never treat you as horribly and=
+ disgustingly as I see you all, collectively as a sick group, treating me. =
+Something like the Golden Rule reversed, if you can&rsquo;t see past the si=
+ckness of Karma, you deserve to be worshipping Audumbla as your sole source=
+ of &hellip; &ldquo;no nothing and nada&rdquo; that you truly <em>do not de=
+serve</em>.</p>
+
+<hr />
+<p style=3D"text-align: justify;">That being said, my life has been filled =
+with some kind of strange light from some kind of strange place that is nei=
+ther the &ldquo;here&rdquo; nor &ldquo;there&rdquo; of Seuss or Lucifer or =
+whomever spoke from some cesspool &ldquo;not here&rdquo; that this place sh=
+ould be the light of Genesis 1:3.</p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCQ9WVU9QUFIdUFUHV10H" ><img alt=3D"" src=3D"https:=
+//i.imgur.com/d6XcO8y.png" /></a></p>
+
+<blockquote>
+<p>&ldquo;<strong>Let there be light</strong>&rdquo; is an English translat=
+ion of the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3Df=
+UgGAQdQGABWVh1TU1ACXlc"  title=3D"Hebrew language">Hebrew</a> =D7=99=D6=B0=
+=D7=94=D6=B4=D7=99 =D7=90=D7=95=D6=B9=D7=A8 (<em>yehi &#39;or</em>) found i=
+n <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJTVU=
+9QUFIdUFUHV10H"  title=3D"Genesis 1:3">Genesis 1:3</a> of the <a href=3D"ht=
+tp://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgDBQFVGABWVh1TU1ACXlc" =
+ title=3D"Torah">Torah</a>, the first part of the <a href=3D"http://arvagf3=
+mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGAwBcGABWVh1TU1ACXlc"  title=3D"He=
+brew Bible">Hebrew Bible</a>. In <a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFAgRQVE9QUFIdUFUHV10H"  title=3D"Old Testament">Old=
+ Testament</a> translations of the phrase, translations include the <a href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGAQdcGABWVh1TU1A=
+CXlc"  title=3D"Greek language">Greek</a> phrase &gamma;&epsilon;&nu;&eta;&=
+theta;=CE=AE&tau;&omega; &phi;=E1=BF=B6&sigmaf; (<em>gen=C4=93th=C4=93t=C5=
+=8D ph=C5=8Ds</em>) and the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/li=
+sts/lt.php?id=3DfUgMAw9TGABWVh1TU1ACXlc"  title=3D"Latin">Latin</a> phrases=
+ <em><strong><em>fiat lux</em></strong></em> and <em><strong><em>lux sit</e=
+m></strong></em>.</p>
+</blockquote>
+
+<p style=3D"text-align: justify;">&ldquo;She kinda knew&rdquo; one of my fa=
+ncy ways of saying the Spirit of God hovered over the previous verse, wonde=
+ring if at all &hellip; or if ever we would find the words &ldquo;everyone&=
+rdquo; and &ldquo;shekinah&rdquo; &hellip; something more than &ldquo;kinda=
+ novell.&rdquo;</p>
+
+<h2 id=3D"ver-cin-getorix">VER CIN GETORIX</h2>
+
+<p><strong>Verizon Communications Inc.</strong> (<a href=3D"http://arvagf3m=
+cfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJTVk9QUFIdUFUHV10H"  title=3D"Ab=
+out this sound"><img alt=3D"About this sound" src=3D"https://upload.wikimed=
+ia.org/wikipedia/commons/thumb/8/8a/Loudspeaker.svg/11px-Loudspeaker.svg.pn=
+g" /></a><a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUg=
+FCAJTV09QUFIdUFUHV10H"  title=3D"GT Verizon Communications Incorporated.ogg=
+">listen</a> (<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=
+=3DfUgGAQFUGABWVh1TU1ACXlc"  title=3D"Wikipedia:Media help">help</a>&middot=
+;<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJTVk9=
+QUFIdUFUHV10H"  title=3D"File:GT Verizon Communications Incorporated.ogg">i=
+nfo</a>)) (<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3Df=
+UgGAwJSGABWVh1TU1ACXlc"  title=3D"Help:IPA/English">/v=C9=99=CB=88ra=C9=AAz=
+=C9=99n/</a> <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=
+=3DfUgFAw9QXU9QUFIdUFUHV10H"  title=3D"Help:Pronunciation respelling key"><=
+em>v=C9=99-RY-z=C9=99n</em></a>) is an American multinational <a href=3D"ht=
+tp://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJTUE9QUFIdUFUHV10H"=
+  title=3D"Telecommunications">telecommunications</a> conglomerate and a co=
+rporate component of the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists=
+/lt.php?id=3DfUgFCAJTUU9QUFIdUFUHV10H"  title=3D"Dow Jones Industrial Avera=
+ge">Dow Jones Industrial Average</a>.<a href=3D"http://arvagf3mcfjgyvse.oni=
+on.pet/lists/lt.php?id=3DfUgFCAJTUk9QUFIdUFUHV10H" >[10]</a> The company is=
+ based at <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfU=
+gFCAJTU09QUFIdUFUHV10H"  title=3D"1095 Avenue of the Americas">1095 Avenue =
+of the Americas</a> in <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/l=
+t.php?id=3DfUgFCAJTXE9QUFIdUFUHV10H"  title=3D"Midtown Manhattan">Midtown M=
+anhattan</a>, <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=
+=3DfUgFCAJTXU9QUFIdUFUHV10H"  title=3D"New York City">New York City</a>,<a =
+href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJcVE9QUFI=
+dUFUHV10H" >[4]</a> but is <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lis=
+ts/lt.php?id=3DfUgFCAJcVU9QUFIdUFUHV10H"  title=3D"Delaware corporation">in=
+corporated</a> in <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php=
+?id=3DfUgFCAJcVk9QUFIdUFUHV10H"  title=3D"Delaware">Delaware</a>.</p>
+
+<p>In 1984, the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?i=
+d=3DfUgFBQJWU09QUFIdUFUHV10H"  title=3D"United States Department of Justice=
+">United States Department of Justice</a> mandated <a href=3D"http://arvagf=
+3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJcV09QUFIdUFUHV10H"  title=3D"=
+AT&amp;T Corporation">AT&amp;T Corporation</a> to <a href=3D"http://arvagf3=
+mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJcUE9QUFIdUFUHV10H"  title=3D"B=
+reakup of the Bell System">break up</a> the <a href=3D"http://arvagf3mcfjgy=
+vse.onion.pet/lists/lt.php?id=3DfUgFCAJcUU9QUFIdUFUHV10H"  title=3D"Bell Sy=
+stem">Bell System</a> into seven companies, each a <a href=3D"http://arvagf=
+3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJcUk9QUFIdUFUHV10H"  title=3D"=
+Regional Bell Operating Company">Regional Bell Operating Company</a> (RBOC)=
+, commonly referred to as &ldquo;Baby Bells&rdquo;. One of the Baby Bells, =
+<strong>Bell Atlantic</strong>,<a href=3D"http://arvagf3mcfjgyvse.onion.pet=
+/lists/lt.php?id=3DfUgFCAJcU09QUFIdUFUHV10H" >[11]</a> came into existence =
+in 1984, consisting of the separate operating companies <a href=3D"http://a=
+rvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJcXE9QUFIdUFUHV10H"  titl=
+e=3D"New Jersey Bell">New Jersey Bell</a>, <a href=3D"http://arvagf3mcfjgyv=
+se.onion.pet/lists/lt.php?id=3DfUgFCAJcXU9QUFIdUFUHV10H"  title=3D"Bell of =
+Pennsylvania">Bell of Pennsylvania</a>, <a href=3D"http://arvagf3mcfjgyvse.=
+onion.pet/lists/lt.php?id=3DfUgFCAJdVE9QUFIdUFUHV10H"  title=3D"Diamond Sta=
+te Telephone">Diamond State Telephone</a>, and <a href=3D"http://arvagf3mcf=
+jgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJdVU9QUFIdUFUHV10H"  title=3D"C&am=
+p;P Telephone">C&amp;P Telephone</a>, with a trading area from New Jersey t=
+o Virginia. This company would later become Verizon.</p>
+
+<p><strong>AT&amp;T Mobility LLC</strong> or <strong>AT&amp;T U.S. Mobility=
+</strong>, also known as <strong>AT&amp;T Wireless</strong>, <a href=3D"htt=
+p://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJdVk9QUFIdUFUHV10H" =
+ title=3D"Trade name">marketed</a> as simply <strong>AT&amp;T</strong>, is =
+a <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJdV0=
+9QUFIdUFUHV10H"  title=3D"Wholly owned subsidiary">wholly owned subsidiary<=
+/a> of <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFC=
+AJdUE9QUFIdUFUHV10H"  title=3D"AT&amp;T">AT&amp;T Inc.</a> that provides <a=
+ href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJdUU9QUF=
+IdUFUHV10H"  title=3D"Wireless services">wireless services</a> to 165.9 mil=
+lion subscribers in the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/=
+lt.php?id=3DfUgGBQZUGABWVh1TU1ACXlc"  title=3D"United States">United States=
+</a>,<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJ=
+dUk9QUFIdUFUHV10H" >[4]</a> including Puerto Rico and the <a href=3D"http:/=
+/arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCAJdU09QUFIdUFUHV10H"  ti=
+tle=3D"U.S. Virgin Islands">U.S. Virgin Islands</a>. AT&amp;T Mobility is t=
+he largest <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3Df=
+UgFCAJdXE9QUFIdUFUHV10H"  title=3D"Wireless telecommunications provider">wi=
+reless telecommunications provider</a> in the United States and Puerto Rico=
+ ahead of <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfU=
+gFCAJdXU9QUFIdUFUHV10H"  title=3D"Verizon Wireless">Verizon Wireless</a> an=
+d the largest <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=
+=3DfUgFCAJdXE9QUFIdUFUHV10H"  title=3D"Wireless telecommunications provider=
+">wireless telecommunications provider</a> in North America when including =
+<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANUVE9Q=
+UFIdUFUHV10H"  title=3D"AT&amp;T Mexico">AT&amp;T Mexico</a>.</p>
+
+<p>Originally known as Cingular Wireless (a joint venture between <a href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANUVU9QUFIdUFU=
+HV10H"  title=3D"SBC Communications">SBC Communications</a> and <a href=3D"=
+http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANUVk9QUFIdUFUHV10=
+H"  title=3D"BellSouth">BellSouth</a>) from 2000 to 2007, the company acqui=
+red the old <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3D=
+fUgFCANUV09QUFIdUFUHV10H"  title=3D"AT&amp;T Wireless Services">AT&amp;T Wi=
+reless</a> in 2004; SBC later acquired <a href=3D"http://arvagf3mcfjgyvse.o=
+nion.pet/lists/lt.php?id=3DfUgFCAJcV09QUFIdUFUHV10H"  title=3D"AT&amp;T Cor=
+poration">the original AT&amp;T</a> and adopted its name. Cingular became w=
+holly owned by AT&amp;T in December 2006 as a result of AT&amp;T&rsquo;s <a=
+ href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANUUE9QUF=
+IdUFUHV10H"  title=3D"Mergers and acquisitions">acquisition</a> of BellSout=
+h.<br />
+<strong>Vercingetorix</strong> (<a href=3D"http://arvagf3mcfjgyvse.onion.pe=
+t/lists/lt.php?id=3DfUgGAwJSGABWVh1TU1ACXlc"  title=3D"Help:IPA/English">/=
+=CB=8Cv=C9=9C=CB=90rs=C9=AAn=CB=88d=CA=92=C9=9Bt=C9=99r=C9=AAks, -=CB=88=C9=
+=A1=C9=9Bt-/</a> <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?=
+id=3DfUgFAw9QXU9QUFIdUFUHV10H"  title=3D"Help:Pronunciation respelling key"=
+><em>VUR-sin-JET-=C9=99r-iks, -=E2=81=A0GET-</em></a>, <a href=3D"http://ar=
+vagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgMAw9TGABWVh1TU1ACXlc"  title=
+=3D"Latin">Latin</a>: <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt=
+.php?id=3DfUgFBwJcU09QUFIdUFUHV10H"  title=3D"Help:IPA/Latin">[w=C9=9Brk=C9=
+=AA=C5=8B=CB=88=C9=A1=C9=9Bt=C9=94ri=CB=90ks]</a>; c.&thinsp;82 BC &ndash; =
+46 BC) was a king and chieftain of the <a href=3D"http://arvagf3mcfjgyvse.o=
+nion.pet/lists/lt.php?id=3DfUgFCANUUU9QUFIdUFUHV10H"  title=3D"Arverni">Arv=
+erni</a> tribe; he united the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/=
+lists/lt.php?id=3DfUgFCANUUk9QUFIdUFUHV10H"  title=3D"Gauls">Gauls</a> in a=
+ revolt against <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?i=
+d=3DfUgCAQBRGABWVh1TU1ACXlc"  title=3D"Roman Republic">Roman</a> forces dur=
+ing the last phase of <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt=
+.php?id=3DfUgFCANUU09QUFIdUFUHV10H"  title=3D"Julius Caesar">Julius Caesar<=
+/a>&rsquo;s <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3D=
+fUgFCANUXE9QUFIdUFUHV10H"  title=3D"Gallic Wars">Gallic Wars</a>.</p>
+
+<p>Vercingetorix was the son of Celtillus the Arvernian, leader of the Gall=
+ic tribes. Vercingetorix came to power after his formal designation as chie=
+ftain of the Arverni at the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/li=
+sts/lt.php?id=3DfUgFCANUXU9QUFIdUFUHV10H"  title=3D"Oppidum">oppidum</a> <a=
+ href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANVVE9QUF=
+IdUFUHV10H"  title=3D"Gergovia">Gergovia</a> in 52 BC. He immediately estab=
+lished an alliance with other Gallic tribes, took command and combined all =
+forces, and led them in the Celts&rsquo; most significant revolt against Ro=
+man power. He won the <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt=
+.php?id=3DfUgFCANVVU9QUFIdUFUHV10H"  title=3D"Battle of Gergovia">Battle of=
+ Gergovia</a> against <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt=
+.php?id=3DfUgFCANUU09QUFIdUFUHV10H"  title=3D"Julius Caesar">Julius Caesar<=
+/a> in which several thousand Romans and allies died and Caesar&rsquo;s Rom=
+an legions withdrew.</p>
+
+<h1 id=3D"riminal">RIMINAL</h1>
+
+<p style=3D"text-align: center;"><a href=3D""><img alt=3D"spears/riminal" s=
+rc=3D"https://i.imgur.com/7C6fRn3.png" /></a></p>
+
+<p style=3D"text-align: center;">&ldquo;We weren&rsquo;t sure something was=
+ wrong.&rdquo;</p>
+
+<p style=3D"text-align: justify;">That was the &ldquo;geist&rdquo; of the c=
+onversation between Britney and I. It was the first. actual. conversation t=
+hat I can remember having with her&ndash;in the kind of ethereal-portal way=
+ that all of her songs were&hellip;almoist that before this strangely relev=
+ent interaction, something i&rsquo;d consider &ldquo;personal news&rdquo; &=
+hellip; and would prefer to actually see on the news. The point here is cle=
+ar, for some reason &ldquo;can&rsquo;t you see I&rsquo;m calling everyone&r=
+dquo; doesn&rsquo;t seem to be actual news to a single reporter &hellip; or=
+ a single person on the planet. Even though that&rsquo;s exactly what it is=
+, she&rsquo;s calling literally absolutely everyone about the &ldquo;audaci=
+ty&rdquo; of &hellip; something or someone between god and the city of &hel=
+lip; well, &ldquo;Audenacity.&rdquo;</p>
+
+<blockquote type=3D"cite">
+<p>&quot;<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUg=
+FCANVVk9QUFIdUFUHV10H" >Momma, don&#39;t cry</a>&quot;</p>
+</blockquote>
+
+<p style=3D"text-align: justify;">Adam beckons the Crimson Tide; wonders if=
+ anyone else is turning &hellip; and still can&rsquo;t get a &ldquo;pingbac=
+k&rdquo; from @britneyspears, @tuttlesinger or @danaschwartzzz despite the =
+immense size of my &hellip; Schwartz; and sincere dezire to actually remove=
+ the &ldquo;t&rdquo; from the Israeli newspaper &hellip; &ldquo;The Land&rd=
+quo;&#39;s name &hellip; and the word for charity. Literally I&rsquo;m star=
+ing at what appears to be sincerely hidden torture, something so sick and g=
+rotesque I can&rsquo;t even &ldquo;bear to remember&rdquo; &hellip; and yet=
+ here I am, with nothing more than prayers for &ldquo;Pax Amicaricanus&rdqu=
+o; &hellip; and literally &ldquo;taking over the entirety of the Universe&r=
+dquo; to stop what appears to be a downfall of morality and sanity that sim=
+ply &hellip;</p>
+
+<p>&hellip; doesn&rsquo;t connect, &ldquo;just. reply. to. the. tweet&rdquo=
+; to the answer to a question, &ldquo;yes, I am mad.&rdquo;</p>
+
+<hr />
+<p style=3D"text-align: justify;">In the meantime I sent the video to my pa=
+rents, since it appears that&rsquo;s who it&rsquo;s really &ldquo;written a=
+nd performed for&rdquo; &hellip; to stop my mother from crying, or maybe me=
+ from yelling at them and blamjing them for what is actually and honestly y=
+our fault and your problem.</p>
+
+<blockquote type=3D"cite">
+<p>&quot;<a data-saferedirecturl=3D"https://www.google.com/url?q=3Dhttps://=
+geotrack.email/ext/l?idx%3DuITaVSOI3pFk9hcSRi4S%26ret%3Dhttps%253A%252F%252=
+Fwww.youtube.com%252Fwatch%253Fv%253DCduA0TULnow&amp;source=3Dgmail&amp;ust=
+=3D1585435906705000&amp;usg=3DAFQjCNG9X479AtbfoS3Hr_FogWDJyEIrhA" href=3D"h=
+ttp://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANVV09QUFIdUFUHV10H=
+"  target=3D"_blank">I can&#39;t help it but I love him</a>.&#39;</p>
+</blockquote>
+
+<p style=3D"text-align: justify;">Maybe she wants me to stop yelling at you=
+ too. Maybe tweets get autodeleted&ndash;maybe it&rsquo;s impossible to &ld=
+quo;reply&rdquo; &hellip; maybe this is all some kind of sick twisted joke =
+in a Zoo of &hellip; honestly it feels like I&rsquo;m all alone typing to t=
+he wind. Breath of God cited &hellip;</p>
+
+<p style=3D"text-align: justify;"><em>Vikissionoroarionovich</em> &hellip; =
+also cited &hellip; &ldquo;Oh no.&rdquo; Seriously, do something before thi=
+ngs start being noticed, like the disappearance of freedom, speech, and the=
+ Eiffel Tower. (for some reason I see.. &quot;the unspeakable ... the ineff=
+able ...&quot;)</p>
+
+<p><a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgMAAdSG=
+ABWVh1TU1ACXlc" ><img alt=3D"" src=3D"https://i.imgur.com/ByXJjg3.png" /></=
+a></p>
+
+<hr />
+<p style=3D"text-align: justify;">It&rsquo;s been just about the worst few =
+days I can remember &hellip; ever, in all of history. I think I&rsquo;ve lo=
+st more respect for America &hellip; and &ldquo;Americans&rdquo; in the las=
+t week than I&rsquo;ve had in all my lifetimes combined, literally seeing t=
+he fall of Babylon the Great with my own eyes &hellip; as the place that ma=
+ny fleed to from places like India and Cuba has fallen well below the level=
+s of &ldquo;anarchy&rdquo; and the derangement of society than we saw took =
+years and years of guerrilla activity &hellip; or &ldquo;violence on the le=
+vel of the Russian Cossacks/Spetznaz&rdquo; &hellip;</p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgNCEpXUQAfV1BVU1wB" ><img alt=3D"" src=3D"https://i.=
+imgur.com/TPlRJHy.png" /></a></p>
+
+<p style=3D"text-align: center;">cmon petal...&nbsp; <a href=3D"http://arva=
+gf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANVUE9QUFIdUFUHV10H" ><em>ped=
+al to the ... metal</em></a>.</p>
+
+<p>here, in 2020; it&rsquo;s taken no more than under a thousand deaths to =
+shut down the economy of the most powerful nation in the world &hellip; sen=
+ding the ants to huddle around the TV and their computers &ldquo;social dis=
+tancing&rdquo; actually coining a phrase that makes me cringe inside as I c=
+an &hellip; do nothing but attribute it to the very same &ldquo;covet means=
+&rdquo; that JFK told the world decades ago was part of a hidden conspiracy=
+ to degrade the American dream and American freedom &hellip;</p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCANVUU9QUFIdUFUHV10H" ><img alt=3D"" src=3D"https:=
+//i.imgur.com/fQaA3lv.png" /></a></p>
+
+<p style=3D"text-align: center;">jogging my memory, Miss American Dream sta=
+rted off with<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=
+=3DfUgFCANVUk9QUFIdUFUHV10H" > this &quot;statement</a>&quot;</p>
+
+<p style=3D"text-align: justify;">&hellip; today we stare at each other alm=
+ost unpassioned, wondering when this will end, if it&rsquo;s even real; mos=
+t of all&hellip; if the future will remember it, or &ldquo;if there&rsquo;s=
+ any future at all.&rdquo;</p>
+
+<p style=3D"text-align: justify;">That&rsquo;s what I think at least, or I =
+see&ndash;without very much response&ndash;even still from the world that n=
+ow screams as loud as it can that &ldquo;we see you&rdquo; and &hellip; in =
+the same breath almost begs without more than a shotgun to my head for me t=
+o simply &ldquo;shut up and stop talking&rdquo; as they move down a course =
+of action that appears to me to be &hellip; literally the total end of civi=
+lization.</p>
+
+<hr />
+<p style=3D"text-align: justify;">Ancient of &ldquo;Days&rdquo; &hellip; wr=
+iting on and about the Last of &ldquo;Them.&rdquo;</p>
+
+<p><a href=3D"http://bemalin.ermccorp.com">http://bemalinermccorp.com</a><b=
+r />
+<a href=3D"http://silenceandbetrayal.ermccorp.com">http://silenceandbetraya=
+lermccorp.com</a></p>
+
+<hr />
+<p>excerpted from&nbsp;<a href=3D"http://gruyeretpfbwdeft.onion.pet/CHALK.h=
+tml">http://</a><a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?i=
+d=3DfUgFCANVU09QUFIdUFUHV10H" >gruyeretpfbwdeft.onion</a><a href=3D"http://=
+arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANVXE9QUFIdUFUHV10H" >/CH=
+ALK.html</a></p>
+
+<p style=3D"text-align: justify;">The &quot;<strong>gist</strong>&quot; of =
+the message is&nbsp;<strong><a href=3D"http://arvagf3mcfjgyvse.onion.pet/li=
+sts/lt.php?id=3DfUgNAgRQGABWVh1TU1ACXlc" >verifiable</a>&nbsp;proof</strong=
+>&nbsp;that we are&nbsp;<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/=
+lt.php?id=3DfUgFAgBVGABWVh1TU1ACXlc" >living in a computer</a>&nbsp;in&nbsp=
+;<em>simulated reality</em>...&nbsp;<em>just like the Matrix. &nbsp;</em>Th=
+e answer to that question, what does that mean--is that God has woven a &qu=
+ot;hidden&quot; message into our everything--beginning with each name and&n=
+bsp;<strong>every word</strong>--and in this hidden Adamic language, he pro=
+vides us with guidance, wisdom, and suggestions on how to proceed on this p=
+ath from &quot;raelity&quot; to Heaven. &nbsp;I&#39;ve personally spent qui=
+te a bit of time decoding the message and have tried to deliver an interest=
+ing and &quot;<strong>fun</strong>&quot; narrative of the ideas I see.&nbsp=
+; Specifically the story of Exodus, which is called &quot;Names&quot; in He=
+brew discusses a time shifted narrative of our &quot;<strong>now</strong>&q=
+uot; delivering our society from a hidden slavery (read as&nbsp;<em>ignoran=
+ce of advanced technologies already in use</em>) that is described as&nbsp;=
+<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgNAgRRGABW=
+Vh1TU1ACXlc" >the &quot;darkness&quot; of Exodus</a>. &nbsp;If you have&nbs=
+p;<b>any questions</b>, ideas to contribute or concerns... I&#39;d&nbsp;<a =
+href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgNAgRSGABWVh1=
+TU1ACXlc" >love to hear from you</a>&nbsp;this whole&nbsp;<a href=3D"http:/=
+/arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgNAgRTGABWVh1TU1ACXlc" >thi=
+ng really is</a>&nbsp;about working together--<a href=3D"http://arvagf3mcfj=
+gyvse.onion.pet/lists/lt.php?id=3DfUgMAAdTGABWVh1TU1ACXlc" >Heaven</a>, I m=
+ean.</p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgCBAFWGABWVh1TU1ACXlc" ><em><strong>Wh</strong></em>=
+at<em><strong>&nbsp;should we &quot;do?&quot;</strong></em></a></p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCANVXE9QUFIdUFUHV10H" ><img alt=3D"image.png" src=
+=3D"https://i.ibb.co/9Yt58d9/image.png" /></a></p>
+
+<p style=3D"text-align: center;">&quot;<a href=3D"http://arvagf3mcfjgyvse.o=
+nion.pet/lists/lt.php?id=3DfUgFCANVXU9QUFIdUFUHV10H" ><em>anything but this=
+,</em></a>&quot;</p>
+
+<p style=3D"text-align: justify;"><i>The message focuses on the &quot;new&q=
+uot; disclosure that &quot;Creation&quot; and &quot;virtual reality&quot; a=
+re nearly synonymous, sans the positive energy surrounding&nbsp;</i><a href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCQZSGABWVh1TU1A=
+CXlc" >the &quot;re&quot;-ason, you</a><i>. &nbsp;That&#39;s a tiny electri=
+cal engineering joke about the word &quot;cation&quot; to introduce you to =
+a hidden message encoded in the languages of our world--something you might=
+ see clearly one day soon in the word &quot;English.&quot; &nbsp;That parti=
+cular &quot;</i><b>l</b><i>&quot; is short for language, but more generally=
+ it is the beginning of the&nbsp;</i><b>great holy light. &nbsp;</b><i>That=
+ little &#39;</i><b>l</b><i>&quot; makes further appearances in &quot;<b>ev=
+ery cloud has a silver lining</b>&quot; (and the&nbsp;<b>malovious</b>&nbsp=
+;link between sky and Heaven) joining the&nbsp;</i><b>Fifth Element</b><i>&=
+nbsp;<b>Si</b>licon to the Spanish for &quot;<a href=3D"http://arvagf3mcfjg=
+yvse.onion.pet/lists/lt.php?id=3DfUgFCANWVE9QUFIdUFUHV10H" >to see.</a>&quo=
+t; &nbsp;The fundamental &quot;gist&quot; of the message that follows is a =
+sort of key tying religion to&nbsp;<b>nearly everything</b>&nbsp;in our wor=
+ld from music, to movies, to history... to every single word. &nbsp;This ke=
+y to the message unites the miracles of Jesus Christ performed in the New T=
+estament with &quot;the kind of thing any one of us would want to do&nbsp;<=
+/i><b><i>instantly</i>&nbsp;</b>if we were to suddenly find out that things=
+ like&nbsp;<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3Df=
+UgNBABRGABWVh1TU1ACXlc" >land, oil, and bread</a>&nbsp;are not truly scarce=
+; but&nbsp;<i>the truth</i>&nbsp;is.&quot; &nbsp;It continues to link a num=
+ber of Biblical stories&nbsp;<a href=3D"http://arvagf3mcfjgyvse.onion.pet/l=
+ists/lt.php?id=3DfUgFCANWVU9QUFIdUFUHV10H" >to modern times</a>&nbsp;with a=
+&nbsp;<b>huge emphasis on&nbsp;<a href=3D"http://arvagf3mcfjgyvse.onion.pet=
+/lists/lt.php?id=3DfUgFCANWVk9QUFIdUFUHV10H" >freedom</a></b>, technology, =
+and of course,&nbsp;<b>U.</b></p>
+
+<p style=3D"text-align: justify;"><i>&quot;The Name Server&quot; goes on to=
+ suggest we see the light in Carly&nbsp;<a href=3D"http://arvagf3mcfjgyvse.=
+onion.pet/lists/lt.php?id=3DfUgFCANWV09QUFIdUFUHV10H" >Simon</a>, Gene&nbsp=
+;<a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgNCAddGAB=
+WVh1TU1ACXlc" >Simmons</a>, and the word &quot;simulation&quot; as we embar=
+k on this journey to all together now change the entire world by transition=
+ing from a hidden &quot;simulated reality&quot; to something much closer to=
+, but not quite Heaven. &nbsp;I do hope we will include&nbsp;<a href=3D"htt=
+p://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgMAAdTGABWVh1TU1ACXlc" >=
+The Doors</a>&nbsp;in our &quot;stairway to Heaven.&quot;</i></p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCQdWGABWVh1TU1ACXlc"  target=3D"_blank"><img alt=
+=3D"" height=3D"255" src=3D"http://fromthemachine.org/reqs/i.imgur.com/33Qo=
+4tY.png" width=3D"455" /></a></p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFAw9VXU9QUFIdUFUHV10H"  target=3D"_blank"><img alt=
+=3D"" id=3D"m_8110421168436017498gmail-m_-7799801091522384276gmail-m_-59003=
+74597918558253gmail-BLOGGER_PHOTO_ID_6435225364944127154" src=3D"http://fro=
+mthemachine.org/reqs/4.bp.blogspot.com/-2Sg7kEhJ3V8/WU6DX8cUBLI/AAAAAAAAASk=
+/WLpHK4jl4oQ3Go77H5gLlseLgJO-cxgzQCK4BGAYYCw/s320/Screenshot+2017-06-24+at+=
+10.57.35+AM-763013.png" style=3D"border-width: 0px; border-style: solid; wi=
+dth: 206px; height: 256px;" /></a></p>
+
+<p style=3D"text-align: center;"><b><a href=3D"http://arvagf3mcfjgyvse.onio=
+n.pet/lists/lt.php?id=3DfUgFAgdRV09QUFIdUFUHV10H"  target=3D"_blank"><img a=
+lt=3D"bygod.whenistheapocalypse.com" height=3D"98" src=3D"http://fromthemac=
+hine.org/reqs/www.judaicawebstore.com/Assets/NewProductImages/Small/Eilat-S=
+tone-and-Silver-Star-of-David-Necklace-RA-39E_small.jpg" width=3D"98" /></a=
+></b></p>
+
+<p>&nbsp;</p>
+
+<p style=3D"text-align: center;"><b>JUNE&nbsp;<a href=3D"http://arvagf3mcfj=
+gyvse.onion.pet/lists/lt.php?id=3DfUgFCQdWGABWVh1TU1ACXlc"  target=3D"_blan=
+k">23</a>; 2016 &amp; 2017</b></p>
+
+<p style=3D"text-align: center;"><b>&quot;</b><b>WE WILL NOT GO QUIETLY&nbs=
+p;INTO THE NIGHT, WE WILL NOT VANISH WITHOUT A FIGHT.</b>&quot;</p>
+
+<p style=3D"text-align: justify;">On&nbsp;<a href=3D"http://arvagf3mcfjgyvs=
+e.onion.pet/lists/lt.php?id=3DfUgNCARWGABWVh1TU1ACXlc"  target=3D"_blank"><=
+em>Christmas Eve</em>&nbsp;2016</a>,&nbsp;<img alt=3D"" height=3D"54" src=
+=3D"http://fromthemachine.org/reqs/i.imgur.com/uRrzEGi.png" width=3D"25" />=
+<strong><em>clarified</em></strong>&nbsp;this message from the Creator of&n=
+bsp;<em>our&nbsp;</em><strong><a href=3D"http://arvagf3mcfjgyvse.onion.pet/=
+lists/lt.php?id=3DfUgNCARXGABWVh1TU1ACXlc"  target=3D"_blank"><em>youNivers=
+e</em></a>,&nbsp;</strong><em>linking the story of Exodus (Hebrew: Book of&=
+nbsp;<strong>Names</strong>) to George W.&nbsp;<strong>Bush&#39;</strong>s =
+inaugural address on 1/20/2001, to&nbsp;<strong><a href=3D"http://arvagf3mc=
+fjgyvse.onion.pet/lists/lt.php?id=3DfUgNCARQGABWVh1TU1ACXlc"  target=3D"_bl=
+ank">the definitive verse heralding the Second Coming</a></strong>, Revelat=
+ion 1:20, and to the 9/11 attack.&nbsp; This message proves that the name D=
+ie Bold and the events surrounding our election process and its transition =
+to a more technologically advanced system has been artificially retarded.&n=
+bsp; Several days later, f<a href=3D"http://arvagf3mcfjgyvse.onion.pet/list=
+s/lt.php?id=3DfUgNCARRGABWVh1TU1ACXlc"  target=3D"_blank">ollowing Revelati=
+on &nbsp;1, I sent to as many public servants</a>&nbsp;as I could find a co=
+ntinuation of that message that adds a significant number of problems in ou=
+r justice and &quot;retribution&quot; system to the list of artificially cr=
+eated problems; along with a poignant&nbsp;suggestion that we&nbsp;<strong>=
+use this proof of the existence of time travel technology in order to imple=
+ment&nbsp;pre-crime</strong>.</em><br />
+&nbsp;</p>
+
+<p style=3D"text-align: justify;">The following is a clear and concise expl=
+anation of the mystery of Revelation 1:20, a 1:1 connection between the &qu=
+ot;stars and lampstands&quot; and the planets, gods they represent, and a s=
+ingle chemistry element; proving that science predates religion and our fun=
+damental understanding of the universe, of science, and of technology... is=
+ connected to religion.</p>
+
+<p style=3D"text-align: justify;"><b>&nbsp;The mystery of the seven stars w=
+hich thou sawest in my right hand, and the seven golden candlesticks. The s=
+even stars are the...</b></p>
+
+<p style=3D"text-align: justify;">The message ties together with&nbsp;<a hr=
+ef=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANWUE9QUFIdU=
+FUHV10H"  target=3D"_blank">President Bush&#39;s recitation of the lines of=
+ Ecclesiastes&nbsp;<strong>9:11</strong></a>, which in-order describe each =
+element-planet combination. &nbsp; A simple substitution of the word &quot;=
+race&quot; for &quot;election&quot; and combining the first and second line=
+s yields&nbsp;almost exactly &quot;<strong>the election is not to the votin=
+g booth.</strong>&quot; &nbsp;This verse of Ecclesiastes which the Presiden=
+t paraphrased clearly answer the mystery of Revelation 1:20. &nbsp; The fir=
+st of many &quot;unseen patterns&quot; revealed in the Holy Bible is this c=
+onnection between chapter and verse and predicted dates in our timeline.</p=
+>
+
+<p><img alt=3D"" height=3D"54" src=3D"http://fromthemachine.org/reqs/i.imgu=
+r.com/uRrzEGi.png" width=3D"25" /><em>retur<b>n</b>ed</em>,&nbsp;and saw&nb=
+sp;<em>that</em>&nbsp;under the sun,&nbsp;</p>
+
+<blockquote>
+<blockquote><b>Hg &nbsp; &nbsp;</b>&nbsp;that the race is not to the swift,=
+</blockquote>
+
+<blockquote><b>Na &nbsp; &nbsp;</b>&nbsp;nor the battle to the strong,</blo=
+ckquote>
+
+<blockquote><b>Xe &nbsp; &nbsp;</b>&nbsp;neither yet bread to the wise,</bl=
+ockquote>
+
+<blockquote><b>Fe &nbsp; &nbsp;</b>&nbsp;nor yet riches to men of understan=
+ding,</blockquote>
+
+<blockquote><b>Si &nbsp; &nbsp;</b>&nbsp;nor yet favour to men of skill;</b=
+lockquote>
+
+<blockquote>lol&nbsp;but ti<u>me</u>&nbsp;and chance happeneth to ((save)) =
+them all.<br />
+&nbsp;</blockquote>
+</blockquote>
+
+<p style=3D"text-align: justify;">This is not the kind of message that most=
+ people &quot;just get&quot; by glancing at it for a few moments.&nbsp; Muc=
+h I write sounds some like&nbsp;<em>The Boss&#39;s&nbsp;</em>&quot;<em>we d=
+idn&#39;t start the fire,</em>&quot; and that&#39;s not because Adam is imi=
+tating art, it&#39;s because there&#39;s not really a simple way to show pe=
+ople proof that spans between words, and cultures, and time... without list=
+ing them.&nbsp; To really grasp the impact of what I am presenting you not =
+only have to have a decent understanding of linear time and causality, you =
+also have to have a working knowledge of the history of language.&nbsp; On =
+top of all of that you have to see that what I am delivering proves that th=
+e &quot;etymology&quot; we believe as a society to be hard and fast truth i=
+s not so true, that there is some way that a&nbsp;<em>hidden influence</em>=
+&nbsp;has adultered our entire history, and in doing so has woven a message=
+ from the beginning of time to today that is designed very simply to show u=
+s the &quot;and and&quot; at the beginning of the word &quot;etymology&quot=
+; to show us that this is about &quot;<strong>et</strong>ernit<strong>y,</s=
+trong>&quot; and it bleeds into &quot;<strong>et</strong>&nbsp;tu Brute?&qu=
+ot; from Shakespeare&#39;s Julius Caesar and to the Taming of the Shrew. &n=
+bsp;</p>
+
+<p style=3D"text-align: justify;">Still, enough people should understand th=
+e impact and import of this message that it should be &quot;spreading like =
+wildfire&quot; it should be in the news already, it&#39;s that big of a dea=
+l, and many of you recognize that.&nbsp; That&#39;s the light here, there&#=
+39;s a problem.&nbsp;</p>
+
+<p style=3D"text-align: justify;">With clear&nbsp;<em>articu<strong>lat</st=
+rong>ion</em>, this is the kind of message that I&#39;ve always said was be=
+st delivered&nbsp;<em>yesterday (or earlier), should never have been needed=
+</em>, would never work again, but in this one moment in time...&nbsp;<b>se=
+eing it and understanding it is the catalyst that helps us change everythin=
+g</b>--it might just be pure genius.&nbsp; Everything wrong in the world is=
+ the fault of some esoteric force, whether it&#39;s technology, or that tec=
+hnology being secret, or in all honestly some primal drive to help us chang=
+e all the things that are wrong all around us, as quickly as possible, to m=
+ove us forward with a newfound togetherness.&nbsp; I&#39;ve said that my &q=
+uot;Achilles heel&quot; is that&nbsp;<em>this&nbsp;disruption</em>&nbsp;is =
+contrived, designed, a plan to built to help change the things that we all =
+know are wrong, and still seem to overlook... that damned unseen force. &nb=
+sp;</p>
+
+<p>&nbsp;</p>
+
+<p style=3D"text-align: center;"><a href=3D"http://arvagf3mcfjgyvse.onion.p=
+et/lists/lt.php?id=3DfUgFCANWUU9QUFIdUFUHV10H" ><img alt=3D"" src=3D"https:=
+//i.imgur.com/JMJyQxP.png" /></a><br />
+<img alt=3D"" src=3D"https://i.imgur.com/Cyu3Ge9.png" /></p>
+
+<h2 id=3D"toyswithtrains" style=3D"text-align: center;">TOYSWITHTRAINS</h2>
+
+<p style=3D"text-align: justify;">It appears today that instead of Japan we=
+ are &hellip; or have already sold our future to China. It&rsquo;s clear in=
+ what I see happening in the mobile phone market, in the consolidation and =
+lack of diversity there&ndash;from Google to Motorola.</p>
+
+<p style=3D"text-align: justify;">It&rsquo;s clear at Lenovo, and it&rsquo;=
+s clear at NTT Verio&ndash;the &ldquo;customer and business&rdquo; former p=
+ortions of @IBM&rsquo;s business line; something connecting to the &ldquo;N=
+TT DoCoMo&rdquo; catchy city-state &ldquo;Nippon.&rdquo;</p>
+
+<p style=3D"text-align: justify;">Not that I even know what Nippon means, j=
+ust that it&rsquo;s got something to do with SBC, ATT and &hellip; NTT.</p>
+
+<p style=3D"text-align: justify;">gOh, and China buying Disney-world, Las V=
+egas, ABC &hellip; maybe &hellip; at least in my dreams.</p>
+
+<p style=3D"text-align: justify;">Coconcurrently we are basically seeing th=
+e shut down of Las Vegas, and &ldquo;all american free market businesses&rd=
+quo; with underlying talks of nationalization of the &hellip; transportatio=
+n and medication enterprises; something I wouldn&rsquo;t have forseen comin=
+g, even in my wildest. If this were me doing it, you&rsquo;d be looking at =
+the &ldquo;Castle-ing&rdquo; of medical response, something like the instan=
+t delivery of a vaccine/cure and the closing of hospitals, jails and prison=
+s&ndash;at the Hospitaliers &hellip; somewhat parallel; but I don&rsquo;t t=
+hink it&rsquo;s me.</p>
+
+<p style=3D"text-align: justify;">Staring at our &ldquo;<a href=3D"http://a=
+rvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCQ9WVU9QUFIdUFUHV10H" >Time=
+s New Roman Rios</a>&rdquo; &hellip; there&rsquo;s some need for the &ldquo=
+;nationalization&rdquo; of something like an intra or inter &ldquo;Terran&r=
+dquo; connected to the Suez and Panama canals; but not the entirety of tran=
+sportation&hellip; are the roads actually going to open, Nike?</p>
+
+<p>Are they?</p>
+
+<p style=3D"text-align: center;"><img alt=3D"" src=3D"https://i.imgur.com/f=
+xbxcdx.png" /></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DJU2E1lX1geY&amp;source=3Dgmail&am=
+p;ust=3D1480861489600000&amp;usg=3DAFQjCNFxoW9AkzIr94IKN_AKSoiFmnlxFA" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANWUk9QUFIdUFU=
+HV10H"  target=3D"_blank">sweet like candy to my soul, sweet you rock... an=
+d sweet you roll.&nbsp; Lost for you, I&#39;m so lost for you...</a></font>=
+</span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DRbm6GXllBiw&amp;source=3Dgmail&am=
+p;ust=3D1480861489600000&amp;usg=3DAFQjCNEE-fsKkQiQPf-gorZ22AwRwCRwDw" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgNCEpXUQAfV1BVU1w=
+B"  target=3D"_blank">take me down to the Paradise City, where the&nbsp;gir=
+ls&nbsp;are green... and the grass is pretty</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055">found&nbsp;<a data-saferedirecturl=3D"https://www.google.com/u=
+rl?hl=3Den&amp;q=3Dhttps://www.youtube.com/watch?v%3DmQ8iUvWbrnA&amp;source=
+=3Dgmail&amp;ust=3D1480861489600000&amp;usg=3DAFQjCNG1pkKez82FDXfMrSaqqB50X=
+Kxk_w" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBAVW=
+GABWVh1TU1ACXlc"  target=3D"_blank">between Taylor and Nero&#39;s symphony.=
+.. if Jesus Christ and rock and roll can&#39;t save,,,</a></font></span></p=
+>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DveEVPhYz_B8&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNEBB6Pqe-ryugc0umiWN9D2UK-5UQ" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANWU09QUFIdUFU=
+HV10H"  target=3D"_blank">upon these pour souls, we&#39;ll build Heaven... =
+and call me ho-me</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D9Sk55fGpf9M&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGnxdKcJVHLcFJbIWNYTYDY1dqoqg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGCQZRGABWVh1TU1A=
+CXlc"  target=3D"_blank">care for a dance, and while I&#39;m in the front..=
+ my play on time is won</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DKAqG8eqFoLA&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGpCHW7aI3P3a791ni4NFZGyu0Ynw" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGAg5XGABWVh1TU1A=
+CXlc"  target=3D"_blank">think you&#39;re going to dance with me? you&#39;r=
+e never gonna dance with me..</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DI8sLL4Ab7kM&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGwyWxhw1gL1f2VOgrrhizBKn-Twg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANWXE9QUFIdUFU=
+HV10H"  target=3D"_blank">does what she&#39;s taking not seem to bother you=
+?</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DnGHhqV_QhzE&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGFxrvp5aKp5fnrJ1MSi4dl-NnVUg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANWXU9QUFIdUFU=
+HV10H"  target=3D"_blank">you&#39;re ballroom days are over, baby... you ge=
+t yours, and i&#39;ll get mine</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DLVjAcCsIcX8&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGEzu1SsbfbKPiqn57tAonwqszXXA" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXVE9QUFIdUFU=
+HV10H"  target=3D"_blank">take these broken wings, and learn to fly</a></fo=
+nt></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DZu-DT3Ietcs&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNFc19ZDNG0MTBOnK-BgDJ1aQpX6Og" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXVU9QUFIdUFU=
+HV10H"  target=3D"_blank">come on baby, it&#39;s time to set the night on f=
+ire</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DCGyEd0aKWZE&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGk_zjcE3SzvI33AY6OFSEPRrUIlg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXVk9QUFIdUFU=
+HV10H"  target=3D"_blank">we don&#39;t have to worry about nothing, cuz we =
+got the fire... fire... fire...</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D8n5PWqmzM5A4&amp;source=3Dgmail&a=
+mp;ust=3D1480861489601000&amp;usg=3DAFQjCNHJJiIZXz0wXpdRIcERDuoHHAVfXQ" hre=
+f=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXV09QUFIdUF=
+UHV10H"  target=3D"_blank">god&#39;s re-re-creation, on the new day: mornin=
+g has broken</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D8iPBJR1r8zI&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNH0QAiycMT8LcH-m8zZDuSmBeAHbQ" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXUE9QUFIdUFU=
+HV10H"  target=3D"_blank">i will get you high, i will make you cry...&nbsp;=
+</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DktvTqknDobU&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNFyEN7U1hGSKD8k_M0X7EUfkNQVIg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBwNRGABWVh1TU1A=
+CXlc"  target=3D"_blank">this is it... i&#39;m radio-active...&nbsp;</a></f=
+ont></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DgaoqyaoNgX4&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNH3nuG-qAkFvI3ug0_YFsolAi3myw" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgDCA5UGABWVh1TU1A=
+CXlc"  target=3D"_blank">for my love of america, i march on...</a></font></=
+span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D9dnjUf3wFrw&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGFN_snCz7Ugtej1S79WB_0Mv6U6Q" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXUU9QUFIdUFU=
+HV10H"  target=3D"_blank">i make our heart sing...</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><br />
+<span style=3D"font-size:9px;"><font color=3D"#550055"><a data-saferedirect=
+url=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttps://www.youtube.com/w=
+atch?v%3DB9z87viDmOo&amp;source=3Dgmail&amp;ust=3D1480861489601000&amp;usg=
+=3DAFQjCNECnqESjOKnEeViXPKD7wwoiu04Gw" href=3D"http://arvagf3mcfjgyvse.onio=
+n.pet/lists/lt.php?id=3DfUgFCANXUk9QUFIdUFUHV10H"  target=3D"_blank">=E2=80=
+=8Band the words of the prophets are written on the subway walls...</a></fo=
+nt></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DbK463fcJebI&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGdvZHLuyLhUoi8p_AbnPF2lqLqjw" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFAgFVGABWVh1TU1A=
+CXlc"  target=3D"_blank">who lit the candle, started the fire, burnt down t=
+he fortress?</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttp://www.azlyrics.com/lyrics/animals/houseoftherisingsun.html&amp=
+;source=3Dgmail&amp;ust=3D1480861489601000&amp;usg=3DAFQjCNGXiqILw6mf_u1Sm5=
+FjRV9cqVoj7w" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3Df=
+UgFCANXU09QUFIdUFUHV10H"  target=3D"_blank">and God, I know... I&#39;ve won=
+</a>, welcome to the House of&nbsp;<i><a data-saferedirecturl=3D"https://ww=
+w.google.com/url?hl=3Den&amp;q=3Dhttp://fb.me/admdbrn/photos&amp;source=3Dg=
+mail&amp;ust=3D1480861489601000&amp;usg=3DAFQjCNH55Fcm4_Rg5AjVNGI77k_tAzTCt=
+A" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXXE9Q=
+UFIdUFUHV10H"  target=3D"_blank">The Great Light</a></i></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DX9BEjwI5DJg4&amp;source=3Dgmail&a=
+mp;ust=3D1480861489601000&amp;usg=3DAFQjCNFvEtL_hwpmk4rHXbME8HH18s_Yzw" hre=
+f=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANXXU9QUFIdUF=
+UHV10H"  target=3D"_blank">and all the&nbsp;girls... dreamt that they&#39;d=
+ be your partner</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><font face=3D"arial black, sans-serif"><a data-saferedirecturl=
+=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttps://www.youtube.com/watc=
+h?v%3DJU2E1lX1geY&amp;source=3Dgmail&amp;ust=3D1480861489601000&amp;usg=3DA=
+FQjCNHP7Pk5pw_nksZWffK7gWsiijHn4A" href=3D"http://arvagf3mcfjgyvse.onion.pe=
+t/lists/lt.php?id=3DfUgFCANWUk9QUFIdUFUHV10H"  target=3D"_blank">and then..=
+. you come crash, into me.... telling it like it is, you are in a boy&#39;s=
+ dream</a></font></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DsrPz_L0iByw&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNHaaj9oQGpB9kaQYm_Feo2g3kJr4w" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBg5TGABWVh1TU1A=
+CXlc"  target=3D"_blank">we both do quite well, dancing all the time--danci=
+ng, all the time</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttp://bit.ly/2cP4mbu&amp;source=3Dgmail&amp;ust=3D1480861489601000=
+&amp;usg=3DAFQjCNFU7xfAGSK2lsjhnvPQs2rABkWoeA" href=3D"http://arvagf3mcfjgy=
+vse.onion.pet/lists/lt.php?id=3DfUgFBw5XV09QUFIdUFUHV10H"  target=3D"_blank=
+">you and me, play... for all of the loneliness that nobody notices now...<=
+/a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D0Df5dmYvmB4&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNFf8QYR5GYi195iQe0QTp89b2UoSw" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFBgcYVwZQGVNQVlU=
+LVA"  target=3D"_blank">this storm outside and this fire&#39;s bright, oh a=
+nd in your eyes... I see what&#39;s on my mind... you&#39;ve me wild, turne=
+d around inside</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DmBKkYQaByew&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNEylClMjVuTvbC6c_hv0ntNFnkgQg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCANQVE9QUFIdUFU=
+HV10H"  target=3D"_blank">and i&#39;m gonna love you... when the stars fall=
+ from the sky</a>... for&nbsp;<b>they are</b>&nbsp;<a data-saferedirecturl=
+=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttp://bit.ly/2biCYhE&amp;so=
+urce=3Dgmail&amp;ust=3D1480861489601000&amp;usg=3DAFQjCNG3sCRG-H3zFTWyRnD8d=
+_8_EFOmAA" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgF=
+Bw5WU09QUFIdUFUHV10H"  target=3D"_blank">you and i...</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DVEJ8lpCQbyw&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNFGbirDnTiWFAUZKVBa1X_VyPtf3g" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgDBQRRGABWVh1TU1A=
+CXlc"  target=3D"_blank">bring&nbsp;on the&nbsp;girls...</a></font></span><=
+/p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DlcOxhH8N3Bo&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNGmyXjI_VGHYeyJMqfK239hq1dPeQ" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFCQJVGABWVh1TU1A=
+CXlc"  target=3D"_blank">there&#39;s nothing i can say or do... it&#39;s a =
+total eclipse of our heart</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DAJWtLf4-WWs&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNG6-duIISB67OjTCkfoRPSHM8q6Zw" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgMAARWGABWVh1TU1A=
+CXlc"  target=3D"_blank">there&#39;s nothing you can say or do, i am strong=
+er than yesterday</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DDn8vzTsnPps&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNEKPtWCqAgPECQU4Ylmfz2e2y52mA" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFBQVVUk9QUFIdUFU=
+HV10H"  target=3D"_blank">this time, i&#39;m going to let it all come out, =
+this time.. i&#39;m going to stand up and shout</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D450p7goxZqg&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNFBsLH41h-9Rlv1BXjZS6dfGPxlyg" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgFBwRTGABWVh1TU1A=
+CXlc"  target=3D"_blank">cuz my head is underwater, and i&#39;m breathing f=
+ire</a></font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?feature%3Dshare%26v%3DvabnZ9-ex7o%26i=
+ndex%3D15%26list%3DPLoqinZtyDKnhpa5zjKZHPv6mkepQ41JJk%26app%3Ddesktop&amp;s=
+ource=3Dgmail&amp;ust=3D1480861489601000&amp;usg=3DAFQjCNH7Uy63Yd0WyFZNiL7g=
+Q6wdfo29Aw" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUg=
+FCANQVU9QUFIdUFUHV10H"  target=3D"_blank">come, as you are... as i want you=
+ to be</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3D2X_2IdybTV0&amp;source=3Dgmail&am=
+p;ust=3D1480861489601000&amp;usg=3DAFQjCNE8lmz56ePbz0PfKBcRe8QchMHD6w" href=
+=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgHAABdGABWVh1TU1A=
+CXlc"  target=3D"_blank">there will be peace when i am done</a></font></spa=
+n></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://www.youtube.com/watch?v%3DFr_CHOxSyc8%26index%3D5%26list%3D=
+PLgYKDBgxsoMNvBS6k4NffQQnobyUqXuMh&amp;source=3Dgmail&amp;ust=3D14808614896=
+01000&amp;usg=3DAFQjCNH5E7FhYh6tcoHJZWzkKt9nXqD8LA" href=3D"http://arvagf3m=
+cfjgyvse.onion.pet/lists/lt.php?id=3DfUgFAg9SGABWVh1TU1ACXlc"  target=3D"_b=
+lank">i am, i am, i am....</a></font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font color=
+=3D"#550055">&lt;3</font></span></p>
+
+<p style=3D"text-align: center;"><span style=3D"font-size:9px;"><font face=
+=3D"arial black, sans-serif">to be or&nbsp;<a data-saferedirecturl=3D"https=
+://www.google.com/url?hl=3Den&amp;q=3Dhttp://ad.lamc.la&amp;source=3Dgmail&=
+amp;ust=3D1480861489602000&amp;usg=3DAFQjCNGto9yt9i4-xFaTCDScEshaiG75ug" hr=
+ef=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgBAA5QGABWVh1TU=
+1ACXlc"  target=3D"_blank">not to be</a>?</font></span></p>
+
+<p style=3D"text-align: center;">&nbsp;</p>
+
+<p style=3D"text-align: center;"><img alt=3D"Inline image 31" height=3D"115=
+" src=3D"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(5).ht=
+ml" width=3D"495" /></p>
+
+<p style=3D"text-align: center;"><font face=3D"arial black, sans-serif">SOL=
+VED</font><font face=3D"arial black, sans-serif" size=3D"1">, PLANETS DESCR=
+IBED&nbsp;<i>IN</i>&nbsp;<i>ORDER</i>&nbsp;IN...</font></p>
+
+<p style=3D"text-align: center;"><a data-saferedirecturl=3D"https://www.goo=
+gle.com/url?hl=3Den&amp;q=3Dhttp://sign.lamc.la&amp;source=3Dgmail&amp;ust=
+=3D1505066719711000&amp;usg=3DAFQjCNHVcKPDwmzTczWtb4jtXo1LlTFdlQ" href=3D"h=
+ttp://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGAAcYVwZQGVNQVlULVA" =
+ target=3D"_blank"><img alt=3D"Inline image 34" height=3D"153" src=3D"http:=
+//gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(6).html" width=3D"6=
+40" /></a></p>
+
+<p style=3D"text-align: center;"><font face=3D"comic sans ms, sans-serif">t=
+ake a look</font><font face=3D"arial, helvetica, sans-serif">... &quot;the =
+race is not to the swift&quot;&nbsp;<b>obviously</b>&nbsp;links to Mercury&=
+nbsp;</font></p>
+
+<p style=3D"text-align: center;"><font face=3D"arial, helvetica, sans-serif=
+">... and&nbsp;</font><a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt=
+.php?id=3DfUgFCANQVk9QUFIdUFUHV10H" ><em><font size=3D"4">TIME</font>&nbsp;=
+<font face=3D"arial, helvetica, sans-serif">and</font>&nbsp;</em></a><font =
+face=3D"comic sans ms, sans-serif"><a href=3D"http://arvagf3mcfjgyvse.onion=
+.pet/lists/lt.php?id=3DfUgFCANQVk9QUFIdUFUHV10H" ><em><font size=3D"4">chan=
+ce</font></em></a>&nbsp;</font><font face=3D"arial, helvetica, sans-serif">=
+linking to Saturn and ...&nbsp;<b>now.</b></font></p>
+
+<p style=3D"text-align: center;"><a data-saferedirecturl=3D"https://www.goo=
+gle.com/url?hl=3Den&amp;q=3Dhttp://chalk.reallyhim.com&amp;source=3Dgmail&a=
+mp;ust=3D1505066719711000&amp;usg=3DAFQjCNGzWyJgZSAxY0NhuVdyvhkQR38-4g" hre=
+f=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQVSGABWVh1TU1=
+ACXlc"  target=3D"_blank"><img alt=3D"Inline image 33" height=3D"98" src=3D=
+"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(7).html" widt=
+h=3D"460" /></a></p>
+
+<p style=3D"text-align: center;"><b><font face=3D"arial black, sans-serif" =
+size=3D"1">1:1 PLANETS TO ELEMENTS, STARS AND LAMPSTANDS,&nbsp;</font><a da=
+ta-saferedirecturl=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttp://lig=
+ht.reallyhim.com&amp;source=3Dgmail&amp;ust=3D1505066719711000&amp;usg=3DAF=
+QjCNF3koMn23S6Ojp_M662uB0VRgsf6g" href=3D"http://arvagf3mcfjgyvse.onion.pet=
+/lists/lt.php?id=3DfUgGBQVTGABWVh1TU1ACXlc"  target=3D"_blank">LIGHT</a><fo=
+nt face=3D"arial black, sans-serif">&nbsp;(&nbsp;</font><font face=3D"comic=
+ sans ms, sans-serif"><font color=3D"#3e3f3c">c l i c</font><font color=3D"=
+#ff0000">a</font><font color=3D"#3e3f3c">k&nbsp;</font></font><font face=3D=
+"arial black, sans-serif">)</font></b></p>
+
+<p style=3D"text-align: center;"><a data-saferedirecturl=3D"https://www.goo=
+gle.com/url?hl=3Den&amp;q=3Dhttp://hammer.reallyhim.com/&amp;source=3Dgmail=
+&amp;ust=3D1505066719711000&amp;usg=3DAFQjCNGJ8nQWekKzsI4W7j4H_-hP5CXCPw" h=
+ref=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQVcGABWVh1T=
+U1ACXlc"  target=3D"_blank"><img alt=3D"Inline image 24" height=3D"63" src=
+=3D"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(8).html" w=
+idth=3D"63" /></a>&nbsp;<a data-saferedirecturl=3D"https://www.google.com/u=
+rl?hl=3Den&amp;q=3D./&amp;source=3Dgmail&amp;ust=3D1505066719711000&amp;usg=
+=3DAFQjCNF5oE5lNq0XMMHNTSSXMnvHLzOlXA" href=3D"http://arvagf3mcfjgyvse.onio=
+n.pet/lists/lt.php?id=3DfUgGBQVdGABWVh1TU1ACXlc"  target=3D"_blank"><img al=
+t=3D"Inline image 25" height=3D"62" src=3D"http://gruyeretpfbwdeft.onion.pe=
+t/irmax_files/saved_resource(9).html" width=3D"62" /></a>&nbsp;<img alt=3D"=
+Inline image 26" height=3D"62" src=3D"http://gruyeretpfbwdeft.onion.pet/irm=
+ax_files/saved_resource(10).html" width=3D"64" />&nbsp;<a data-saferedirect=
+url=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttp://ironclad.lamc.la/&=
+amp;source=3Dgmail&amp;ust=3D1505066719711000&amp;usg=3DAFQjCNECszsTECB9bG5=
+ZLfY_SGuwOU2nBg" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=
+=3DfUgNAkpXUQAfV1BVU1wB"  target=3D"_blank"><img alt=3D"Inline image 27" he=
+ight=3D"63" src=3D"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_reso=
+urce(11).html" width=3D"63" /></a>&nbsp;<a data-saferedirecturl=3D"https://=
+www.google.com/url?hl=3Den&amp;q=3Dhttp://bereshit.reallyhim.com/&amp;sourc=
+e=3Dgmail&amp;ust=3D1505066719711000&amp;usg=3DAFQjCNEHXxNpnQ5sq9hMXgGEsQMK=
+pM2f-w" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJ=
+UGABWVh1TU1ACXlc"  target=3D"_blank"><img alt=3D"Inline image 28" height=3D=
+"63" src=3D"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(12=
+).html" width=3D"64" /></a><a data-saferedirecturl=3D"https://www.google.co=
+m/url?hl=3Den&amp;q=3Dhttp://cyan.reallyhim.com/&amp;source=3Dgmail&amp;ust=
+=3D1505066719711000&amp;usg=3DAFQjCNErBFImDx-LBaKHvZzvReCSHVjntg" href=3D"h=
+ttp://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJVGABWVh1TU1ACXlc"=
+  target=3D"_blank"><img alt=3D"Inline image 29" height=3D"63" src=3D"http:=
+//gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(13).html" width=3D"=
+64" /></a>&nbsp;<a data-saferedirecturl=3D"https://www.google.com/url?hl=3D=
+en&amp;q=3Dhttp://jerusalem.reallyhim.com/&amp;source=3Dgmail&amp;ust=3D150=
+5066719711000&amp;usg=3DAFQjCNF7TJHkByVszXqVsG5A4MghOeoUKg" href=3D"http://=
+arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJWGABWVh1TU1ACXlc"  targ=
+et=3D"_blank"><img alt=3D"Inline image 30" height=3D"61" src=3D"http://gruy=
+eretpfbwdeft.onion.pet/irmax_files/saved_resource(14).html" width=3D"60" />=
+</a></p>
+
+<p style=3D"text-align: center;"><font face=3D"arial black, sans-serif" siz=
+e=3D"1">LOOK,&nbsp;</font><font face=3D"arial black, sans-serif">BUSH</font=
+><font face=3D"arial black, sans-serif" size=3D"1">&nbsp;SPEECH, ON 1/20/20=
+01 ABOUT 9/11</font></p>
+
+<center>
+<p style=3D"text-align: center;"><a data-saferedirecturl=3D"https://www.goo=
+gle.com/url?hl=3Den&amp;q=3Dhttp://bush.reallyhim.com/&amp;source=3Dgmail&a=
+mp;ust=3D1505066719711000&amp;usg=3DAFQjCNFymlCyH9GCgtDcIS2GmwELLEQnPw" hre=
+f=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJXGABWVh1TU1=
+ACXlc"  target=3D"_blank"><img alt=3D"Inline image 20" height=3D"99" src=3D=
+"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(15).html" wid=
+th=3D"357" /></a>&nbsp;<a data-saferedirecturl=3D"https://www.google.com/ur=
+l?hl=3Den&amp;q=3Dhttp://sign.lamc.la/&amp;source=3Dgmail&amp;ust=3D1505066=
+719711000&amp;usg=3DAFQjCNEZOnJ6rfs5rbDSVaHwyFsK33nbhg" href=3D"http://arva=
+gf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGAAcYVwZQGVNQVlULVA"  target=3D=
+"_blank"><img alt=3D"Inline image 21" height=3D"99" src=3D"http://gruyeretp=
+fbwdeft.onion.pet/irmax_files/saved_resource(16).html" width=3D"116" /></a>=
+</p>
+
+<p style=3D"text-align: center;">A&nbsp;<strong><font face=3D"arial black, =
+sans-serif">pa, Ra:&nbsp;<a data-saferedirecturl=3D"https://www.google.com/=
+url?hl=3Den&amp;q=3Dhttp://dox.reallyhim.com/&amp;source=3Dgmail&amp;ust=3D=
+1505066719711000&amp;usg=3DAFQjCNGH8u5hJa8ZlU0blCpEjs0LEqPb_A" href=3D"http=
+://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJQGABWVh1TU1ACXlc"  t=
+arget=3D"_blank">do x</a></font></strong>&nbsp;is a statement that, despite=
+ apparently sound reasoning from true premises, leads to an apparently self=
+-contradictory or logically unacceptable conclusion.<sup id=3D"m_-240693145=
+8228765498m_7062753601417727326gmail-m_258112447631369337m_2341308960067590=
+409m_4521999671932699583gmail-m_-6182954198820330264gmail-m_521289457461777=
+515m_1359743985997052155m_2062399313490225364m_7360525420591546646gmail-cit=
+e_ref-1"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&amp;=
+q=3Dhttps://en.wikipedia.org/wiki/Paradox%23cite_note-1&amp;source=3Dgmail&=
+amp;ust=3D1505066719711000&amp;usg=3DAFQjCNHWU5x1Wn6jMVz5vlf7q_3stirOYg" hr=
+ef=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJRGABWVh1TU=
+1ACXlc"  target=3D"_blank">[1]</a></sup><sup id=3D"m_-2406931458228765498m_=
+7062753601417727326gmail-m_258112447631369337m_2341308960067590409m_4521999=
+671932699583gmail-m_-6182954198820330264gmail-m_521289457461777515m_1359743=
+985997052155m_2062399313490225364m_7360525420591546646gmail-cite_ref-2"><a =
+data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttps://=
+en.wikipedia.org/wiki/Paradox%23cite_note-2&amp;source=3Dgmail&amp;ust=3D15=
+05066719711000&amp;usg=3DAFQjCNF_iYcQm1jhQqxZNnT_CLlCOBTuQw" href=3D"http:/=
+/arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJSGABWVh1TU1ACXlc"  tar=
+get=3D"_blank">[2]</a></sup>&nbsp;A paradox involves contradictory yet inte=
+rrelated elements that exist simultaneously and persist over time.<sup id=
+=3D"m_-2406931458228765498m_7062753601417727326gmail-m_258112447631369337m_=
+2341308960067590409m_4521999671932699583gmail-m_-6182954198820330264gmail-m=
+_521289457461777515m_1359743985997052155m_2062399313490225364m_736052542059=
+1546646gmail-cite_ref-3"><a data-saferedirecturl=3D"https://www.google.com/=
+url?hl=3Den&amp;q=3Dhttps://en.wikipedia.org/wiki/Paradox%23cite_note-3&amp=
+;source=3Dgmail&amp;ust=3D1505066719711000&amp;usg=3DAFQjCNHoGUlQdg2ke53HEb=
+Gkv_pcAeMORA" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3Df=
+UgGBQJTGABWVh1TU1ACXlc"  target=3D"_blank">[3]</a></sup><sup id=3D"m_-24069=
+31458228765498m_7062753601417727326gmail-m_258112447631369337m_234130896006=
+7590409m_4521999671932699583gmail-m_-6182954198820330264gmail-m_52128945746=
+1777515m_1359743985997052155m_2062399313490225364m_7360525420591546646gmail=
+-cite_ref-4"><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&=
+amp;q=3Dhttps://en.wikipedia.org/wiki/Paradox%23cite_note-4&amp;source=3Dgm=
+ail&amp;ust=3D1505066719711000&amp;usg=3DAFQjCNHl564L6R4A6ucsVbw9sT2TRN8n_Q=
+" href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJcGABWV=
+h1TU1ACXlc"  target=3D"_blank">[4]</a></sup><sup id=3D"m_-24069314582287654=
+98m_7062753601417727326gmail-m_258112447631369337m_2341308960067590409m_452=
+1999671932699583gmail-m_-6182954198820330264gmail-m_521289457461777515m_135=
+9743985997052155m_2062399313490225364m_7360525420591546646gmail-cite_ref-5"=
+><a data-saferedirecturl=3D"https://www.google.com/url?hl=3Den&amp;q=3Dhttp=
+s://en.wikipedia.org/wiki/Paradox%23cite_note-5&amp;source=3Dgmail&amp;ust=
+=3D1505066719711000&amp;usg=3DAFQjCNFeLeI21GlgRCgOYs4m07C3z8OPdg" href=3D"h=
+ttp://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQJdGABWVh1TU1ACXlc"=
+  target=3D"_blank">[5]</a></sup></p>
+
+<p style=3D"text-align: center;"><a data-saferedirecturl=3D"https://www.goo=
+gle.com/url?hl=3Den&amp;q=3Dhttp://ender.reallyhim.com&amp;source=3Dgmail&a=
+mp;ust=3D1505066719711000&amp;usg=3DAFQjCNGg84BInA70opi4z7ebUuCVdtW7Tw" hre=
+f=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgGBQVXGABWVh1TU1=
+ACXlc"  target=3D"_blank"><img alt=3D"Inline image 19" height=3D"99" src=3D=
+"http://gruyeretpfbwdeft.onion.pet/irmax_files/saved_resource(17).html" wid=
+th=3D"471" /></a></p>
+</center>
+</div>
+<br />subscription <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.ph=
+p?id=3DfUgFCQFQUU9QUFIdUFUHV10H" >options</a>
+contact <a href=3D"http://arvagf3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgF=
+AgZUUU9QUFIdUFUHV10H" >adam</a>
+
+<p class=3D"poweredby" style=3D"text-align:center"><a href=3D"http://arvagf=
+3mcfjgyvse.onion.pet/lists/lt.php?id=3DfUgHB0pXUQAfV1BVU1wB"  title=3D"visi=
+t the phpList website" ><img src=3D"cid:e7bd3eb8eb813b5fe93975eb9376ddaf" t=
+itle=3D"powered by the viewers and listeners like you and the  ... and also=
+ post-traumatic angst " alt=3D"powered by the viewers and listeners like yo=
+u and the  ... and also post-traumatic angst " border=3D"0" /></a></p><img =
+src=3D"http://arvagf3mcfjgyvse.onion.pet/lists/ut.php?u=3D18cae2fa78f975206=
+24d2bdc66b81209&amp;m=3D353" width=3D"1" height=3D"1" border=3D"0" alt=3D""=
+ /></body></html>
+
+
+--b2_180af7ff2a9addf4bd42e2460ec9fdbe
+Content-Type: image/png; name="powerphplist.png"
+Content-Transfer-Encoding: base64
+Content-ID: <e7bd3eb8eb813b5fe93975eb9376ddaf>
+Content-Disposition: inline; filename=powerphplist.png
+
+iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAYAAACRIVbWAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAA
+DmhJREFUaIHtmntw1FWWxz+/Xz/T6aQTQgIkJgR5LGRIFDcPsSAEWEFkZSIisPIcRaTKEkEMwUGX
+RRaZWlSylKPrqBDFGCXyUAqiKLUg6ADBhCRAEGQhWU1IIpru9Lt/j/2jkx/ppEOwZmoetX6rurrv
+45x77/fec+65t69AN4zOyMgDFgP5gK17+f8D2IG9QPGZmprDqqpqBULnj9EZGTFAMfDrv3Tv/obx
+EbC4trq6DTrI6iDqMHDbX69ff7OoBvJqq6vbxI6MYn4hqjfcRpAfhA4f9d9/zd78nWCiHljRW+nw
+zPGk507T0g11VZwqLwPAZLEybtbD2PoPxP7DVY59uA2f20lK2hgSBg/jVHkZtviBZE6bzaF3tgIw
+fdlv2f9fL/TQC3BoR7DO5AXLtbyuem9WpvaLci6eOtpjLLb4gSH1ju3aTkv9xaD8wuVaO+m50/C6
+neF0rBCBvN7IssUHiTj1SRmnPiljRJcOT1/2WwBOfVIWkva6nKTn3gtcJ9tksZKSNgZb/MCwek99
+Uoa99Sq2+EGYI61aHsC4WQ/ftEztF+VkTXuQ4Znjw4wltF5nfwFs/QeSPmGatgB8bmc4OvL09BEe
+2FubaDhXFfydOw1TpBVb/EBs8YPY/XKwwYZzVfxm03Zs8QNpqb+IuaNOyqgxAIzIHE9U3ACunKlE
+kiQURUFVFGRZBqD+bCUAsizjcbbzPzUVAPRPvpUBqSN+lozBbCF55G3UHQ/1LLIso6rBb0WWMVms
+SJIEwJGdb/BgwX9gNEdy9fIFTZderw/hOyQVDuMeeJhxDzyskVJ7pJwBqcOxtzb1INUWPwh761Ua
+zlUxPHM8KWljOLZrGylpY4juP5CT+9/X6g/+1R3Y4geFDLwz/+nizzSdH/9+Q58y3fvxD1m5Ycts
+8YPIvncOAD53O+ZIK16Xk+YrF7lQcYTs6XN4o2Bhr1z0SdaxXds0P9UJr8uJOdIaktfZMEBz/UWy
+ps2mpf4iDedOkzVtNiaLlfpz1wdYfXg/J/d/0KO9+rOVHCwuYsG/vUr14f00X7nYp0xIPyxWvOHN
+iOYrFyjbXAhA7oNLyMibrun7puKLjsluCisLIIbNVRRt6Ssdv7t+Gi/VYbJYSRs3FUmSSBs3FZPF
+SuOlOiRJ4nLtKUwWK+dPHqHxUh1eVzvNVy5qZPYFe2sTnxVvIffBJQxIHX5TMhCcsBHZE3pddV1h
+Sxh003o70efK6g0f/34DMx5/jimLV/Qwl+YrF7G3NlF/thK9KFJ75ECwMTE4N6IgMG7WI+Q+uEST
+2V64mIDHhd/tRC+KXPr6GMc+fIs7p89l/2sbbyjT1XRPHdjJuS/KtbY60b1ew7kqznap17Xt3iCM
+zshQe+QqCpKi/CzyekM3J/l3jfAjEQSNYUEQkCQZj8eNXq8nOjqayMhIVFXF7XZjt9uRZRmLxYJO
+p6PrwfPPRfifikAggCAIf/LE9SIdHLAgCnjcHvz+AP+YeQdT7p7CqFGjSEhIQFVVWltbqamp4dCh
+Q5w+fRqj0YjZbA4hDIA+SFMUBa/XS4TZjHADM7gRZFnG5/NhiYgAQQjJH5SQgM/vp62tDZ1O16sO
+t9uN0WjEYDAEGeiiB3oxQ0FVAAG3243BYGDZsmXMnTuXAQMGhG2ksbGR0tJS3nzzTRRFwWQyoaoq
+kqIEZ/MGZCmKgsViITMzk4qKCrxeL0K3TvYFRVGIjY0lLS2NEydOIMsygiAQCARISUlh586dtLS0
+MG/ePFwuV1jCVFVl7NixXLlyhe+//x6dXt+DrLDTqKgqfr8fm83GunXrePLJJ0OI8ng8vPLKKzz1
+1FPU1dWRmJjIqlWreOaZZ1BVVVv2NwO/38+wYcN47bXXGDp0KD6f7+fwBIDX62Xs2LG8/vrrxMbG
+asGmqqrodDrMZjNms7nXPsmyTEREBC+99BL33HMPbrc7bL2wZujz+VBkBZPZRHZ2dkhZIBDgzbfe
+4tzZs9xySzKbfvc7Nmx4nsEpg5k/fz6XL1/hjTf/QGxMLBD0eV6fD6VjdXVG4IIgYDQaARA7TE+S
+JJxOJ5IkIQgCJpMJg8GALMt4vV5EUeyIxIPG0ElEpz5ZlkP8ktFopL6+nqlTpxIIBHC5XEiShMfj
+0eqIooher8fn8xEIBPB6vTidTqxRUT3IDUuWJEnceuutTJo4ibVr17Ju3TpGjhwJgMvlorLya+bO
+nsM/3X03CxYspKG+nsEpgxFFkYce+hcOHTrEd9//LyZzBH6/n7vuuouYmBgCgQD3338/UVFRVFdX
+U1payrfffhs0WUkiJyeHefPmkZSUREVFBSUlJbS2ttK/f39mzZrFhQsXmDx5Munp6TgcDvbs2cPn
+n38ePAqpqvbpCkVRmDFjBk1NTZSVlZGZmcns2bNJTU3l2rVrfPbZZxw/fpw1a9Zgs9mYP38+aWlp
+/PvGjfgDgRBdYc1QJ+rIysxi7dq1jL1rLAUFBZw/fx6AqKgoxt45lk8Pfsrb77zNwIEDGDp0mCY7
+ZMgQcsePx+/zB1ei309+fj5FRUUUFRXh9Xqprq5m4sSJfPDBB4waNQqPx4MgCKxevZr4+Hhqamq4
+7777eP/990lISCA+Pp7169dTWlpKXl4eNTU1eDwetm7dypo1awh0G1QnOonLz88nJyeHkSNHsn37
+dpKSkqisrESWZZ5//nlycnI0nc3NzZw/f16zhD5XFoJAeno6AMufWI4syRQWFrJ582ZGjBjB0qWP
+MmPGr9lW/DZfHj1KYmLidYV6PWlpaRhNJk1Xpw8pKCjgww8/RBAEtm7dSklJCc899xxbtmxBp9Ox
+bds21q9fjyRJvPrqq+zdu5fly5dTXFwMwIkTJ3jkkUdoa2tDVVXmzJnDyy+/zL59+/B6vWGHAkEf
+297eTnZ2NhEREaxYsYILFy5gtVoZNmwYLpcLh8PB4sWLOXjwIFu2bGFQYmKPnTn8Pq2qxMXFacmV
+K1eSl5dHYWEhly5dYs+evcTFxTHvoYd45513sNvtIeK2WBtGg0FLG41GGhoa+PTTT4mOjiYmJob2
+9naKi4u5/fbbSU5ORpIkDh48iF6vp1+/fly7do0DBw5wxx13aH7pvffew+l0EhsbS0xMDAcOHOC7
+775j0qRJmi/sDUajkZMnT+Lz+di5cyebNm1i4sSJNDc3Y7fbiY6ORhRFzGYzUWH8Va9kyYqCrIQ2
+vnLlSqb/83SWPraU3Xt2s3btWl568UX8AT+rV6/G5XJpdRVZQeW67xBFkZ9++glJkjRnbjAY+PHH
+HxEEAavVqm33neV6vV5z9IIgoCgKbW1tmgPvdOjXrl2jX79+NyQKwGQyUVtby6JFi6ipqWHmzJmU
+lJSwY8cOEhMT8fv9feoIS5bRaKChvqFHflJiEs3NzbQ72omNjcVsNrPh+Q1YrVaeLnha2/abmq/i
+811vXJZlEhMTsVgsmn/xer0MHz4cv99Pa2srer2+x2wKgqD5HVEUSU1N1cwtEAgQGRlJamoqly9f
+7nOgnTpOnjzJihUrmDp1KgsWLCA9PZ2FCxdqZPUIqPsiy2QyceLEiZC8uro6it9+m9LS98nLy2Pj
+xo2oqorVamXjxo1YIiyseWYNDoeDs2fOIklBUgSCoUh8fDyrVq3CaDTidDrJysriiSeeYN++fTQ3
+N6PT6cKS1UmYLMs8/vjjZGdn43Q6MRgMFBQUEBERQXl5OaYOH+nz+fB6vfh8Pi0cEAQBn8/HvHnz
+KCwsJDo6GrvdTlVVFQ6HQzu+GQwGRFHE6/WGJa2X445AZWUlx48f58477wSCUTqqyoCEBIaPGE5V
+VRV+vx+TyYTZbOaFF15g06ZNLF36GN83fkdkx32XSjAeamtr495772XKlCk4HA6SkpL46quv2Lx5
+M2lpaQAhfkdVVQRBwGAwQEeQ7PV62bFjB42NjVitVgwGAytXruTy5ctkZWVhMBgoKSnB7/drxO/a
+tUtLe71eFi1axMyZM3E4HMTExOByuXj33Xfx+XwcPXqUpUuXkpmZyaqnn8bXzTSF0RkZbXS7WhZQ
+cTpdZGdl8oc33iA6Khq3282zzz5Lyw+tSIEAc+fMJT8/P0RZa2sr+fn5NDY1ER0djT8QwO/3859b
+tpCcnMzSRx8ld8IEoqxWvvnmGyoqKpAVhZiYGLKzszl+/DgejwexYwdNHTKEuLg4PB4Pu3fvZsmS
+JTgcDtLT03E6nXx57BiNTU2YTCZibDZyJ0wgMjIyZIWePXMGCO6I1TU1DE5JITMri9jYWFpaWvjj
+V3+kzR70hWazmcmTJ2PQ6zlQXg6hu6FdGJ2RsZdu/0ILqMiqgqPNzv33z2Tdv64jLq4fHo+H/Qf2
+k3xLMjk5OSFE/fDDD2x+8UX27fsYnU6PIEBAkvH7/WwtKmLw4MEs+s1iTOYIVEVBbzBgMpkQRQFF
+VvB4PERYIhAFsbMTBAIS9rY2hgwZwq6yMh5btoyvq6ow6PUIooDJZMag14MQXJVutxu6WY/RaERV
+VURRxGgyEggE8Pv8KIqCqBMxmczodboOHQoetxsEgcjISK42hdyafqQHirqTBQI6UUd0VDS7d++m
+taWVJUseYfLkycx6YFZITVmWOXzkCNu3b+PYsS+DMysK0GHzqqqi1+vR6XToDUYyszK1sj4hCJw+
+Xa0lVYJBcTAGVK9n/rxz902jG1lFnX/fh6wuQSA4IEFEUSTaHU5stmgybruN9F+N5pbkZFRVpamx
+kZqaGmrPnsHe1kZkpBVRJ3aQIRCQJFRVJXPMGMwREXxx9GjwxH+ztwoqqKpCtM3GpEmTOHz4MD/9
++CPiDa5Z/pzocs78qLa6Oj/sWwdR0PraQVxwl5EkCQQw6A0gCMiShKIqGPQG7VDcFf6AhMFgwOvx
+BK9iOnadnwtFUXB7PFgiIrQ47C8I7a3DL69oboyer2i64pf3Wb2/z/o/Z4jQ19LLyeMAAAAASUVO
+RK5CYII=
+
+
+--b2_180af7ff2a9addf4bd42e2460ec9fdbe--
+
+
+--b1_180af7ff2a9addf4bd42e2460ec9fdbe--
+
